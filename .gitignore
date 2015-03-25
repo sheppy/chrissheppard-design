@@ -1,0 +1,24 @@
+### Windows template
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+### Node template
+logs
+*.log
+pids
+*.pid
+*.seed
+lib-cov
+coverage
+.grunt
+node_modules
+
+### Sass template
+.sass-cache
+*.css.map
+
+### JetBrains template
+.idea/

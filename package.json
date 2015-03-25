@@ -1,0 +1,24 @@
+{
+  "name": "chrissheppard-design",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sheppy/chrissheppard-design.git"
+  },
+  "author": "Chris Sheppard (http://www.chrissheppard.co.uk/)",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/sheppy/chrissheppard-design/issues"
+  },
+  "homepage": "https://github.com/sheppy/chrissheppard-design",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "require-dir": "^0.3.0"
+  }
+}
