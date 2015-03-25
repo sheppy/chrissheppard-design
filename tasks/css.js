@@ -12,13 +12,13 @@ gulp.task("css", function () {
     return stream.done()
         .pipe(plugins.plumber())
         .pipe(plugins.concat("main.css"))
-        .pipe(plugins.stripCssComments({all: true}))
         .pipe(plugins.autoprefixer({
             browsers: ["last 2 versions"],
             cascade: false
         }))
         .pipe(plugins.csscomb())
         .pipe(plugins.combineMq({beautify: false}))
+        .pipe(plugins.minifyCss({keepSpecialComments: 0}))
         .pipe(plugins.csso())
         .pipe(plugins.cssbeautify({autosemicolon: true}))
         .pipe(plugins.plumber.stop())
