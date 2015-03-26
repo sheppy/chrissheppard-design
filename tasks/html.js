@@ -28,3 +28,9 @@ gulp.task("html", function () {
         .pipe(plugins.plumber.stop())
         .pipe(gulp.dest("./public"));
 });
+
+
+gulp.task("html-lint", function () {
+    return gulp.src("./public/**/*.html")
+        .pipe(plugins.html5Lint());
+});
