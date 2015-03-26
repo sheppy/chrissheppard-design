@@ -5,8 +5,7 @@ var path = require("path");
 var _ = require("lodash");
 
 
-// Compile jade files to HTML
-gulp.task("html", function () {
+var compileHTML = function () {
     return gulp.src("./src/templates/pages/**/*.jade")
         .pipe(plugins.plumber())
         .pipe(plugins.data(function (file) {
@@ -25,12 +24,40 @@ gulp.task("html", function () {
         .pipe(plugins.jade({
             pretty: true
         }))
-        .pipe(plugins.plumber.stop())
+        .pipe(plugins.plumber.stop());
+};
+
+
+// Validate HTML
+gulp.task("html-lint", function () {
+    return compileHTML()
+        .pipe(plugins.plumber())
+        .pipe(plugins.html5Lint())
+        .pipe(plugins.plumber.stop());
+});
+
+
+// Save HTML
+gulp.task("html", function () {
+    return compileHTML()
         .pipe(gulp.dest("./public"));
 });
 
 
-gulp.task("html-lint", function () {
-    return gulp.src("./public/**/*.html")
-        .pipe(plugins.html5Lint());
+// Save production HTML
+gulp.task("html-prod", function () {
+    return compileHTML()
+        .pipe(plugins.plumber())
+        .pipe(plugins.htmlmin({
+            collapseWhitespace: true,
+            preserveLineBreaks: true,
+            removeComments: false,
+            collapseBooleanAttributes: true,
+            removeAttributeQuotes: false,
+            removeRedundantAttributes: true,
+            removeEmptyAttributes: true,
+            removeScriptTypeAttributes: true
+        }))
+        .pipe(plugins.plumber.stop())
+        .pipe(gulp.dest("./public/"));
 });

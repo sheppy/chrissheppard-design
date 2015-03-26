@@ -29,3 +29,25 @@ gulp.task("css", function () {
         .pipe(plugins.plumber.stop())
         .pipe(gulp.dest("./public/assets/css"));
 });
+
+
+// Minify css and update html references
+gulp.task("css-prod", ["css"], function () {
+    return gulp.src("./public/**/*.html")
+        .pipe(plugins.plumber())
+        .pipe(plugins.usemin({
+            css: [
+                plugins.bytediff.start(),
+                plugins.uncss({
+                    html: ["./public/**/*.html"],
+                    ignore: []
+                }),
+                plugins.csso(),
+                plugins.rev(),
+                plugins.rename({ extname: ".min.css" }),
+                plugins.bytediff.stop()
+            ]
+        }))
+        .pipe(plugins.plumber.stop())
+        .pipe(gulp.dest("./public/"));
+});

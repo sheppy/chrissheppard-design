@@ -2,17 +2,17 @@ var gulp = require("gulp");
 var runSequence = require("run-sequence");
 
 
-gulp.task("build", function (callback) {
+gulp.task("prod", ["lint"], function (callback) {
     runSequence(
         "clean",
-        "prod-html",
-        "prod-css",
+        "html-prod",
+        "css-prod",
         callback
     );
 });
 
 
-gulp.task("default", function (callback) {
+gulp.task("dev", ["lint"], function (callback) {
     runSequence(
         "clean",
         "html",
@@ -20,3 +20,7 @@ gulp.task("default", function (callback) {
         callback
     );
 });
+
+
+gulp.task("lint", ["html-lint", "js-lint"]);
+gulp.task("default", ["prod"]);
