@@ -11,6 +11,7 @@ module.exports = {
         normalize: "./bower_components/normalize.css/normalize.css",
         jade: "./src/templates/pages/**/*.jade",
         dataDir: "./src/data/",
+        data: "./src/data/**/*.json",
         dataGlobal: "./src/data/global.json"
     }
 };

@@ -1,6 +1,7 @@
 var gulp = require("gulp");
 var plugins = require("gulp-load-plugins")();
 var streamqueue = require("streamqueue");
+var browserSync = require("browser-sync");
 var config = require("./config");
 
 
@@ -28,7 +29,8 @@ gulp.task("css", function () {
         .pipe(plugins.csso())
         .pipe(plugins.cssbeautify({ autosemicolon: true }))
         .pipe(plugins.plumber.stop())
-        .pipe(gulp.dest(config.dist.cssDir));
+        .pipe(gulp.dest(config.dist.cssDir))
+        .pipe(browserSync.reload({ stream: true }));
 });
 
 
