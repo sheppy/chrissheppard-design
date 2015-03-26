@@ -1,8 +1,4 @@
 {
-  "disallowAnonymousFunctions": false,
-  "disallowCapitalizedComments": false,
-  "disallowCommaBeforeLineBreak": false,
-  "disallowCurlyBraces": false,
   "disallowDanglingUnderscores": {
     "allExcept": [
       "__proto__",
@@ -16,49 +12,26 @@
   "disallowEmptyBlocks": true,
   "disallowFunctionDeclarations": true,
   "disallowImplicitTypeConversion": ["numeric", "binary", "string"],
-  "disallowKeywordsInComments": false,
   "disallowKeywordsOnNewLine": ["else"],
   "disallowKeywords": ["with"],
   "disallowMixedSpacesAndTabs": true,
-  "disallowMultipleLineBreaks": false,
   "disallowMultipleLineStrings": true,
   "disallowMultipleVarDecl": "exceptUndefined",
   "disallowNewlineBeforeBlockStatements": true,
   "disallowOperatorBeforeLineBreak": ["+", "."],
-  "disallowPaddingNewlinesBeforeKeywords": false,
-  "disallowPaddingNewlinesInBlocks": false,
-  "disallowPaddingNewLinesInObjects": false,
   "disallowQuotedKeysInObjects": true,
-  "disallowSemicolons": false,
-  "disallowSpaceAfterBinaryOperators": false,
-  "disallowSpaceAfterKeywords": false,
-  "disallowSpaceAfterLineComment": false,
   "disallowSpaceAfterObjectKeys": true,
   "disallowSpaceAfterPrefixUnaryOperators": ["++", "--", "+", "-", "~", "!"],
-  "disallowSpaceBeforeBinaryOperators": false,
-  "disallowSpaceBeforeBlockStatements": false,
-  "disallowSpaceBeforeKeywords": false,
-  "disallowSpaceBeforeObjectValues": false,
   "disallowSpaceBeforePostfixUnaryOperators": ["++", "--"],
-  "disallowSpaceBetweenArguments": false,
-  "disallowSpacesInAnonymousFunctionExpression": {
-    "beforeOpeningRoundBrace": false,
+  "disallowSpacesInCallExpression": true,
+  "disallowSpacesInFunctionDeclaration": {
+    "beforeOpeningRoundBrace": true
+  },
+  "requireSpacesInAnonymousFunctionExpression": {
+    "beforeOpeningRoundBrace": true,
     "beforeOpeningCurlyBrace": true
   },
-  "disallowSpacesInCallExpression": true,
-  "disallowSpacesInConditionalExpression": false,
-  "disallowSpacesInForStatement": false,
-  "disallowSpacesInFunctionDeclaration": {
-    "beforeOpeningRoundBrace": true,
-    "beforeOpeningCurlyBrace": false
-  },
-  "disallowSpacesInFunctionExpression": {
-    "beforeOpeningRoundBrace": false,
-    "beforeOpeningCurlyBrace": false
-  },
-  "disallowSpacesInNamedFunctionExpression": {
-    "beforeOpeningRoundBrace": false,
-    "beforeOpeningCurlyBrace": false
-  },
-  "disallowSpacesInsideArrayBrackets": false
+  "requireSpacesInsideObjectBrackets": "all",
+  "disallowTrailingWhitespace": true,
+  "requireBlocksOnNewline": true
 }

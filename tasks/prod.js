@@ -29,12 +29,12 @@ gulp.task("prod-css", ["css"], function () {
             css: [
                 plugins.bytediff.start(),
                 plugins.uncss({
-                  html: ["./public/**/*.html"],
-                  ignore: []
+                    html: ["./public/**/*.html"],
+                    ignore: []
                 }),
                 plugins.csso(),
                 plugins.rev(),
-                plugins.rename({extname: ".min.css"}),
+                plugins.rename({ extname: ".min.css" }),
                 plugins.bytediff.stop()
             ]
         }))

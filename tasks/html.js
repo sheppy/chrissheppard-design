@@ -9,13 +9,15 @@ var _ = require("lodash");
 gulp.task("html", function () {
     return gulp.src("./src/templates/pages/**/*.jade")
         .pipe(plugins.plumber())
-        .pipe(plugins.data(function(file) {
+        .pipe(plugins.data(function (file) {
             // Extend with global data
             var global, page;
             try {
                 global = JSON.parse(fs.readFileSync("./src/data/global.json"));
-                page = JSON.parse(fs.readFileSync("./src/data/" + path.basename(file.path, ".jade") + ".json"));
-            } catch(e) {
+                page = JSON.parse(
+                    fs.readFileSync("./src/data/" + path.basename(file.path, ".jade") + ".json")
+                );
+            } catch (e) {
                 plugins.util.log(plugins.util.colors.red(e.message));
             }
             return _.extend({}, global, page);

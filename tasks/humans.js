@@ -1,7 +1,8 @@
 var gulp = require("gulp");
 var plugins = require("gulp-load-plugins")();
 
-gulp.task("humans", function() {
+
+gulp.task("humans", function () {
     gulp.src("./public/**/*.html")
         .pipe(plugins.humans({
             header: "Chris Sheppard",

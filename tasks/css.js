@@ -5,9 +5,14 @@ var streamqueue = require("streamqueue");
 
 // Compile CSS
 gulp.task("css", function () {
-    var stream = streamqueue({objectMode: true});
+    var stream = streamqueue({ objectMode: true });
     stream.queue(gulp.src("./bower_components/normalize.css/normalize.css"));
-    stream.queue(gulp.src("./src/assets/scss/*.scss").pipe(plugins.plumber()).pipe(plugins.sass()).pipe(plugins.plumber.stop()));
+    stream.queue(
+        gulp.src("./src/assets/scss/*.scss")
+            .pipe(plugins.plumber())
+            .pipe(plugins.sass())
+            .pipe(plugins.plumber.stop())
+    );
 
     return stream.done()
         .pipe(plugins.plumber())
@@ -17,10 +22,10 @@ gulp.task("css", function () {
             cascade: false
         }))
         .pipe(plugins.csscomb())
-        .pipe(plugins.combineMq({beautify: false}))
-        .pipe(plugins.minifyCss({keepSpecialComments: 0}))
+        .pipe(plugins.combineMq({ beautify: false }))
+        .pipe(plugins.minifyCss({ keepSpecialComments: 0 }))
         .pipe(plugins.csso())
-        .pipe(plugins.cssbeautify({autosemicolon: true}))
+        .pipe(plugins.cssbeautify({ autosemicolon: true }))
         .pipe(plugins.plumber.stop())
         .pipe(gulp.dest("./public/assets/css"));
 });
