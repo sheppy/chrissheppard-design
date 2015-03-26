@@ -11,8 +11,13 @@ gulp.task("html", function () {
         .pipe(plugins.plumber())
         .pipe(plugins.data(function(file) {
             // Extend with global data
-            var global = JSON.parse(fs.readFileSync("./src/data/global.json"));
-            var page = JSON.parse(fs.readFileSync("./src/data/" + path.basename(file.path, ".jade") + ".json"));
+            var global, page;
+            try {
+                global = JSON.parse(fs.readFileSync("./src/data/global.json"));
+                page = JSON.parse(fs.readFileSync("./src/data/" + path.basename(file.path, ".jade") + ".json"));
+            } catch(e) {
+                plugins.util.log(plugins.util.colors.red(e.message));
+            }
             return _.extend({}, global, page);
         }))
         .pipe(plugins.jade({
