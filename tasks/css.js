@@ -1,14 +1,15 @@
 var gulp = require("gulp");
 var plugins = require("gulp-load-plugins")();
 var streamqueue = require("streamqueue");
+var config = require("./config");
 
 
 // Compile CSS
 gulp.task("css", function () {
     var stream = streamqueue({ objectMode: true });
-    stream.queue(gulp.src("./bower_components/normalize.css/normalize.css"));
+    stream.queue(gulp.src(config.src.normalize));
     stream.queue(
-        gulp.src("./src/assets/scss/*.scss")
+        gulp.src(config.src.sass)
             .pipe(plugins.plumber())
             .pipe(plugins.sass())
             .pipe(plugins.plumber.stop())
@@ -27,19 +28,19 @@ gulp.task("css", function () {
         .pipe(plugins.csso())
         .pipe(plugins.cssbeautify({ autosemicolon: true }))
         .pipe(plugins.plumber.stop())
-        .pipe(gulp.dest("./public/assets/css"));
+        .pipe(gulp.dest(config.dist.cssDir));
 });
 
 
 // Minify css and update html references
 gulp.task("css-prod", ["css"], function () {
-    return gulp.src("./public/**/*.html")
+    return gulp.src(config.dist.html)
         .pipe(plugins.plumber())
         .pipe(plugins.usemin({
             css: [
                 plugins.bytediff.start(),
                 plugins.uncss({
-                    html: ["./public/**/*.html"],
+                    html: [config.dist.html],
                     ignore: []
                 }),
                 plugins.csso(),
@@ -49,5 +50,5 @@ gulp.task("css-prod", ["css"], function () {
             ]
         }))
         .pipe(plugins.plumber.stop())
-        .pipe(gulp.dest("./public/"));
+        .pipe(gulp.dest(config.dist.dir));
 });

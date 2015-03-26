@@ -3,19 +3,20 @@ var plugins = require("gulp-load-plugins")();
 var fs = require("fs");
 var path = require("path");
 var _ = require("lodash");
+var config = require("./config");
 
 
 var compileHTML = function () {
-    return gulp.src("./src/templates/pages/**/*.jade")
+    return gulp.src(config.src.jade)
         .pipe(plugins.plumber())
         .pipe(plugins.data(function (file) {
             // Extend with global data
             var global, page;
             try {
-                global = JSON.parse(fs.readFileSync("./src/data/global.json"));
-                page = JSON.parse(
-                    fs.readFileSync("./src/data/" + path.basename(file.path, ".jade") + ".json")
-                );
+                global = JSON.parse(fs.readFileSync(config.src.dataGlobal));
+                page = JSON.parse(fs.readFileSync(
+                    config.src.dataDir + path.basename(file.path, ".jade") + ".json"
+                ));
             } catch (e) {
                 plugins.util.log(plugins.util.colors.red(e.message));
             }
@@ -40,7 +41,7 @@ gulp.task("html-lint", function () {
 // Save HTML
 gulp.task("html", function () {
     return compileHTML()
-        .pipe(gulp.dest("./public"));
+        .pipe(gulp.dest(config.dist.dir));
 });
 
 
@@ -59,5 +60,5 @@ gulp.task("html-prod", function () {
             removeScriptTypeAttributes: true
         }))
         .pipe(plugins.plumber.stop())
-        .pipe(gulp.dest("./public/"));
+        .pipe(gulp.dest(config.dist.dir));
 });

@@ -1,9 +1,10 @@
 var gulp = require("gulp");
 var plugins = require("gulp-load-plugins")();
+var config = require("./config");
 
 
 gulp.task("humans", function () {
-    gulp.src("./public/**/*.html")
+    gulp.src(config.dist.html)
         .pipe(plugins.humans({
             header: "Chris Sheppard",
             team: {
@@ -19,6 +20,6 @@ gulp.task("humans", function () {
                 Software: "WebStorm"
             },
             note: "Built with love by Chris Sheppard.",
-            out: "./public/humans.txt"
+            out: config.dist.humans
         }));
 });
