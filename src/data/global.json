@@ -1,4 +1,15 @@
 {
   "pageTitle": "Global",
-  "author": "Chris Sheppard"
+  "meta": {
+    "description": "",
+    "author": "Chris Sheppard",
+    "robots": "",
+    "name": null,
+    "url": null,
+    "image": null
+  },
+  "social": {
+    "googlePlus": "",
+    "twitter": ""
+  }
 }
