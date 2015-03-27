@@ -40,4 +40,15 @@ html(lang="en-GB")
         link(rel="stylesheet" href="assets/css/main.css")
         <!-- endbuild -->
     body
-        block content
+
+        header(role="banner")
+            h1: a(href="/") Site
+
+            nav(role="navigation")
+                ul
+                    li: a(href="/" rel="home") Home
+
+        main(role="main")
+            block content
+
+        footer(role="contentinfo")
