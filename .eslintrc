@@ -142,7 +142,7 @@
             "beforeColon": false,
             "afterColon": true
         }],
-        "max-nested-callbacks": [2, 1],
+        "max-nested-callbacks": [2, 3],
         "new-cap": [2, {
             "newIsCap": true,
             "capIsNew": true

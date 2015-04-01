@@ -7,7 +7,8 @@ module.exports = {
         dir: "./public",
         html: "./public/**/*.html",
         humans: "./public/humans.txt",
-        cssDir: "./public/assets/css"
+        cssDir: "./public/assets/css",
+        jsDir: "./public/assets/js"
     },
     src: {
         dir: "./src",
@@ -16,6 +17,10 @@ module.exports = {
         jade: "./src/templates/pages/**/*.jade",
         dataDir: "./src/data/",
         data: "./src/data/**/*.json",
-        dataGlobal: "./src/data/global.json"
+        dataGlobal: "./src/data/global.json",
+        jsEntry: "./src/assets/js/main.js",
+        tasks: "./tasks/*.js",
+        gulpfile: "./gulpfile.js",
+        esLint: "./.eslintrc"
     }
 };
