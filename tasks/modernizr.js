@@ -7,7 +7,7 @@ var config = require("./config");
 
 // Compile Modernizr
 gulp.task("modernizr", function () {
-    gulp.src([config.src.js, config.src.sass])
+    return gulp.src([config.src.js, config.src.sass])
         .pipe(plugins.plumber())
         .pipe(plugins.modernizr())
         .pipe(plugins.plumber.stop())

@@ -8,6 +8,7 @@ gulp.task("prod", ["lint"], function (callback) {
     runSequence(
         "clean",
         "html-prod",
+        "modernizr",
         "css-prod",
         "js-prod",
         callback
@@ -19,7 +20,9 @@ gulp.task("dev", ["lint"], function (callback) {
     runSequence(
         "clean",
         "html",
+        "modernizr",
         "css",
+        "js",
         callback
     );
 });
