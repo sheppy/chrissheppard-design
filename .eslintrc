@@ -1,5 +1,7 @@
 {
-    "ecmaFeatures": {},
+    "ecmaFeatures": {
+        "modules": true
+    },
     "parser": "espree",
     "env": {
         "browser": true,
@@ -11,7 +13,7 @@
         "prototypejs": false,
         "shelljs ": false,
         "jquery": false,
-        "es6": false
+        "es6": true
     },
     "rules": {
         // Possible Errors
@@ -44,7 +46,7 @@
         "valid-typeof": 2,
 
         // Best Practices
-        "block-scoped-var": 2,
+        "block-scoped-var": 0,  // Currently interferes with es6 modules
         "complexity": [1, 12],
         "consistent-return": 2,
         "curly": 2,
@@ -95,7 +97,7 @@
         "no-warning-comments": 1,
         "no-with": 2,
         "radix": 2,
-        "vars-on-top": 1,
+        "vars-on-top": 0,
         "wrap-iife": 2,
         "yoda": 2,
 

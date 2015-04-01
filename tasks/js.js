@@ -1,7 +1,5 @@
 /*eslint-env node */
 
-"use strict";
-
 var gulp = require("gulp");
 var plugins = require("gulp-load-plugins")();
 var stylish = require("jshint-stylish");
@@ -34,7 +32,7 @@ gulp.task("js", function () {
 
 
 // Minify JS and update html references
-gulp.task("js-prod", ["js"], function () {
+gulp.task("js-prod", ["js", "modernizr"], function () {
     return gulp.src(config.dist.html)
         .pipe(plugins.plumber())
         .pipe(plugins.usemin({
@@ -52,13 +50,13 @@ gulp.task("js-prod", ["js"], function () {
 
 
 gulp.task("js-lint", function () {
-    return gulp.src([config.src.gulpfile, config.src.tasks])
+    return gulp.src([config.src.gulpfile, config.src.tasks, config.src.js])
         .pipe(plugins.plumber())
         .pipe(plugins.jshint())
         .pipe(plugins.jshint.reporter(stylish))
         .pipe(plugins.eslint({ configFile: config.src.esLint, reset: true }))
         .pipe(plugins.eslint.format())
         .pipe(plugins.eslint.failOnError())
-        .pipe(plugins.jscs())
+        .pipe(plugins.jscs({ esnext: true }))
         .pipe(plugins.plumber.stop());
 });
