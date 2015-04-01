@@ -42,6 +42,13 @@ gulp.task("js-prod", ["js", "modernizr"], function () {
                 plugins.rev(),
                 plugins.rename({ extname: ".min.js" }),
                 plugins.bytediff.stop()
+            ],
+            jsHead: [
+                plugins.bytediff.start(),
+                plugins.uglify(),
+                plugins.rev(),
+                plugins.rename({ extname: ".min.js" }),
+                plugins.bytediff.stop()
             ]
         }))
         .pipe(plugins.plumber.stop())

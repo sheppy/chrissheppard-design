@@ -9,6 +9,7 @@ gulp.task("prod", ["lint"], function (callback) {
         "clean",
         "html-prod",
         "css-prod",
+        "js-prod",
         callback
     );
 });
