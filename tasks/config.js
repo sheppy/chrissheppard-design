@@ -6,7 +6,10 @@ module.exports = {
         html: "./public/**/*.html",
         humans: "./public/humans.txt",
         cssDir: "./public/assets/css",
-        jsDir: "./public/assets/js"
+        css: "./public/assets/css/**/*.css",
+        jsDir: "./public/assets/js",
+        js: "./public/assets/**/*.js",
+        assetsDir: "./public/assets"
     },
     src: {
         dir: "./src",

@@ -33,24 +33,20 @@ gulp.task("js", function () {
 
 // Minify JS and update html references
 gulp.task("js-prod", ["js", "modernizr"], function () {
+    var manifest = gulp.src(config.dist.js)
+        .pipe(plugins.plumber())
+        .pipe(plugins.bytediff.start())
+        .pipe(plugins.uglify())
+        .pipe(plugins.rev())
+        .pipe(plugins.rename({ extname: ".min.js" }))
+        .pipe(plugins.bytediff.stop())
+        .pipe(gulp.dest(config.dist.assetsDir))
+        .pipe(plugins.rev.manifest())
+        .pipe(plugins.plumber.stop());
+
     return gulp.src(config.dist.html)
         .pipe(plugins.plumber())
-        .pipe(plugins.usemin({
-            js: [
-                plugins.bytediff.start(),
-                plugins.uglify(),
-                plugins.rev(),
-                plugins.rename({ extname: ".min.js" }),
-                plugins.bytediff.stop()
-            ],
-            jsHead: [
-                plugins.bytediff.start(),
-                plugins.uglify(),
-                plugins.rev(),
-                plugins.rename({ extname: ".min.js" }),
-                plugins.bytediff.stop()
-            ]
-        }))
+        .pipe(plugins.revReplace({ manifest: manifest }))
         .pipe(plugins.plumber.stop())
         .pipe(gulp.dest(config.dist.dir));
 });

@@ -38,21 +38,24 @@ gulp.task("css", function () {
 
 // Minify css and update html references
 gulp.task("css-prod", ["css"], function () {
+    var manifest = gulp.src(config.dist.css)
+        .pipe(plugins.plumber())
+        .pipe(plugins.bytediff.start())
+        .pipe(plugins.uncss({
+            html: [config.dist.html],
+            ignore: []
+        }))
+        .pipe(plugins.csso())
+        .pipe(plugins.rev())
+        .pipe(plugins.rename({ extname: ".min.css" }))
+        .pipe(plugins.bytediff.stop())
+        .pipe(gulp.dest(config.dist.cssDir))
+        .pipe(plugins.rev.manifest())
+        .pipe(plugins.plumber.stop());
+
     return gulp.src(config.dist.html)
         .pipe(plugins.plumber())
-        .pipe(plugins.usemin({
-            css: [
-                plugins.bytediff.start(),
-                plugins.uncss({
-                    html: [config.dist.html],
-                    ignore: []
-                }),
-                plugins.csso(),
-                plugins.rev(),
-                plugins.rename({ extname: ".min.css" }),
-                plugins.bytediff.stop()
-            ]
-        }))
+        .pipe(plugins.revReplace({ manifest: manifest }))
         .pipe(plugins.plumber.stop())
         .pipe(gulp.dest(config.dist.dir));
 });
