@@ -11,7 +11,7 @@ var config = require("./config");
 // Compile CSS
 gulp.task("css", function () {
     var stream = streamqueue({ objectMode: true });
-    stream.queue(gulp.src(config.filePath.normalize));
+    stream.queue(gulp.src(config.file.normalize));
     stream.queue(
         gulp
             .src(path.join(config.dir.scss, config.glob.scss))

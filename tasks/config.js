@@ -23,7 +23,7 @@ module.exports = {
         assets: "./public/assets",
         tasks: "./tasks"
     },
-    filePath: {
+    file: {
         gulpfile: "./gulpfile.js",
         normalize: "./bower_components/normalize.css/normalize.css",
         esLint: "./.eslintrc"

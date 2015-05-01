@@ -58,14 +58,14 @@ gulp.task("js-prod", ["js", "modernizr"], function () {
 gulp.task("js-lint", function () {
     return gulp
         .src([
-            config.filePath.gulpfile,
+            config.file.gulpfile,
             path.join(config.dir.tasks, config.glob.js),
             path.join(config.dir.es6, config.glob.es6)
         ])
         .pipe(plugins.plumber())
         .pipe(plugins.jshint())
         .pipe(plugins.jshint.reporter(stylish))
-        .pipe(plugins.eslint({ configFile: config.filePath.esLint, reset: true }))
+        .pipe(plugins.eslint({ configFile: config.file.esLint, reset: true }))
         .pipe(plugins.eslint.format())
         .pipe(plugins.eslint.failOnError())
         .pipe(plugins.jscs({ esnext: true }))
