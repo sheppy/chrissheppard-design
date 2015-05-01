@@ -1,28 +1,50 @@
 /*eslint-env node */
 
 module.exports = {
-    dist: {
-        dir: "./public",
-        html: "./public/**/*.html",
-        humans: "./public/humans.txt",
-        cssDir: "./public/assets/css",
-        css: "./public/assets/css/**/*.css",
-        jsDir: "./public/assets/js",
-        js: "./public/assets/**/*.js",
-        assetsDir: "./public/assets"
+    glob: {
+        html: "**/*.html",
+        jade: "**/*.jade",
+        css: "**/*.css",
+        scss: "**/*.scss",
+        es6: "**/*.js",
+        js: "**/*.js",
+        json: "**/*.json"
     },
-    src: {
-        dir: "./src",
-        sass: "./src/assets/scss/**/*.scss",
-        normalize: "./bower_components/normalize.css/normalize.css",
-        jade: "./src/templates/pages/**/*.jade",
-        dataDir: "./src/data/",
-        data: "./src/data/**/*.json",
-        dataGlobal: "./src/data/global.json",
-        js: "./src/assets/js/**/*.js",
-        jsEntry: "./src/assets/js/main.js",
-        tasks: "./tasks/*.js",
+    dir: {
+        src: "./src",
+        dist: "./public",
+        scss: "./src/assets/scss",
+        css: "./public/assets/css",
+        jade: "./src/templates/pages",
+        html: "./public",
+        data: "./src/data",
+        es6: "./src/assets/js",
+        js: "./public/assets/js",
+        assets: "./public/assets",
+        tasks: "./tasks"
+    },
+    filePath: {
         gulpfile: "./gulpfile.js",
+        normalize: "./bower_components/normalize.css/normalize.css",
         esLint: "./.eslintrc"
+    },
+
+    browsers: ["last 2 versions"],
+    humans: {
+        header: "Chris Sheppard",
+        team: {
+            "Chris Sheppard": {
+                Twitter: "@ikiholygoat",
+                Website: "http://www.chrissheppard.co.uk/",
+                Country: "United Kingdom"
+            }
+        },
+        site: {
+            Standards: "HTML5, CSS3",
+            Components: "Normalize.css",
+            Software: "WebStorm"
+        },
+        note: "Built with love by Chris Sheppard.",
+        out: "./public/humans.txt"
     }
 };

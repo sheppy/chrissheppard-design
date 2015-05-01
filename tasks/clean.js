@@ -7,6 +7,6 @@ var config = require("./config");
 
 gulp.task("clean", function (cb) {
     del([
-        config.dist.dir
+        config.dir.dist
     ], cb);
 });

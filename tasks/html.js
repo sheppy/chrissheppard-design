@@ -1,23 +1,24 @@
 /*eslint-env node */
 
+var path = require("path");
 var gulp = require("gulp");
 var plugins = require("gulp-load-plugins")();
 var fs = require("fs");
-var path = require("path");
 var _ = require("lodash");
 var config = require("./config");
 
 
 var compileHTML = function () {
-    return gulp.src(config.src.jade)
+    return gulp
+        .src(path.join(config.dir.jade, config.glob.jade))
         .pipe(plugins.plumber())
         .pipe(plugins.data(function (file) {
             // Extend with global data
             var global, page;
             try {
-                global = JSON.parse(fs.readFileSync(config.src.dataGlobal));
+                global = JSON.parse(fs.readFileSync(path.join(config.dir.data, "global.json")));
                 page = JSON.parse(fs.readFileSync(
-                    config.src.dataDir + path.basename(file.path, ".jade") + ".json"
+                    path.join(config.dir.data, path.basename(file.path, ".jade") + ".json")
                 ));
             } catch (e) {
                 plugins.util.log(plugins.util.colors.red(e.message));
@@ -43,7 +44,7 @@ gulp.task("html-lint", function () {
 // Save HTML
 gulp.task("html", function () {
     return compileHTML()
-        .pipe(gulp.dest(config.dist.dir));
+        .pipe(gulp.dest(config.dir.html));
 });
 
 
@@ -62,5 +63,5 @@ gulp.task("html-prod", function () {
             removeScriptTypeAttributes: true
         }))
         .pipe(plugins.plumber.stop())
-        .pipe(gulp.dest(config.dist.dir));
+        .pipe(gulp.dest(config.dir.html));
 });

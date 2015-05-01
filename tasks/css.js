@@ -1,5 +1,6 @@
 /*eslint-env node */
 
+var path = require("path");
 var gulp = require("gulp");
 var plugins = require("gulp-load-plugins")();
 var streamqueue = require("streamqueue");
@@ -10,9 +11,10 @@ var config = require("./config");
 // Compile CSS
 gulp.task("css", function () {
     var stream = streamqueue({ objectMode: true });
-    stream.queue(gulp.src(config.src.normalize));
+    stream.queue(gulp.src(config.filePath.normalize));
     stream.queue(
-        gulp.src(config.src.sass)
+        gulp
+            .src(path.join(config.dir.scss, config.glob.scss))
             .pipe(plugins.plumber())
             .pipe(plugins.sass())
             .pipe(plugins.plumber.stop())
@@ -22,7 +24,7 @@ gulp.task("css", function () {
         .pipe(plugins.plumber())
         .pipe(plugins.concat("main.css"))
         .pipe(plugins.autoprefixer({
-            browsers: ["last 2 versions"],
+            browsers: config.browsers,
             cascade: false
         }))
         .pipe(plugins.csscomb())
@@ -31,31 +33,33 @@ gulp.task("css", function () {
         .pipe(plugins.csso())
         .pipe(plugins.cssbeautify({ autosemicolon: true }))
         .pipe(plugins.plumber.stop())
-        .pipe(gulp.dest(config.dist.cssDir))
+        .pipe(gulp.dest(config.dir.css))
         .pipe(browserSync.reload({ stream: true }));
 });
 
 
 // Minify css and update html references
 gulp.task("css-prod", ["css"], function () {
-    var manifest = gulp.src(config.dist.css)
+    var manifest = gulp
+        .src(path.join(config.dir.css, config.glob.css))
         .pipe(plugins.plumber())
         .pipe(plugins.bytediff.start())
         .pipe(plugins.uncss({
-            html: [config.dist.html],
+            html: [path.join(config.dir.html, config.glob.html)],
             ignore: []
         }))
         .pipe(plugins.csso())
         .pipe(plugins.rev())
         .pipe(plugins.rename({ extname: ".min.css" }))
         .pipe(plugins.bytediff.stop())
-        .pipe(gulp.dest(config.dist.cssDir))
+        .pipe(gulp.dest(config.dir.css))
         .pipe(plugins.rev.manifest())
         .pipe(plugins.plumber.stop());
 
-    return gulp.src(config.dist.html)
+    return gulp
+        .src(path.join(config.dir.html, config.glob.html))
         .pipe(plugins.plumber())
         .pipe(plugins.revReplace({ manifest: manifest }))
         .pipe(plugins.plumber.stop())
-        .pipe(gulp.dest(config.dist.dir));
+        .pipe(gulp.dest(config.dir.html));
 });
