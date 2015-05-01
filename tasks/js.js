@@ -69,5 +69,11 @@ gulp.task("js-lint", function () {
         .pipe(plugins.eslint.format())
         .pipe(plugins.eslint.failOnError())
         .pipe(plugins.jscs({ esnext: true }))
+        .pipe(plugins.filter(path.join(config.dir.tasks, config.glob.js)))
+        .pipe(plugins.jscpd({
+            "min-lines": 5,
+            "min-tokens": 70,
+            verbose: true
+        }))
         .pipe(plugins.plumber.stop());
 });
