@@ -1,7 +1,8 @@
 /*eslint-env node */
 
-var requireDir = require("require-dir");
-requireDir("./tasks");
+// Enable ES6 support
+require("babel/register");
+require("require-dir")("./tasks");
 
 // Possible additions
 

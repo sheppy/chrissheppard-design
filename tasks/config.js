@@ -1,6 +1,6 @@
 /*eslint-env node */
 
-module.exports = {
+export default {
     glob: {
         html: "**/*.html",
         jade: "**/*.jade",
@@ -13,6 +13,7 @@ module.exports = {
     dir: {
         src: "./src",
         dist: "./public",
+        coverage: "./coverage",
         scss: "./src/assets/scss",
         css: "./public/assets/css",
         jade: "./src/templates/pages",

@@ -1,4 +1,5 @@
 {
+  "esnext": true,
   "disallowDanglingUnderscores": {
     "allExcept": [
       "__proto__",
