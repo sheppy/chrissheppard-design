@@ -7,7 +7,7 @@ import stylish from "jshint-stylish";
 import through2 from "through2";
 import browserify from "browserify";
 import babelify from "babelify";
-import isparta from "isparta";
+import {Instrumenter} from "isparta";
 import config from "./config";
 
 var plugins = gulpLoadPlugins();
@@ -88,7 +88,7 @@ gulp.task("js-test", (cb) => gulp
     .src(path.join(config.dir.es6, config.glob.es6))
     .pipe(plugins.plumber())
     .pipe(plugins.istanbul({
-        instrumenter: isparta.Instrumenter,
+        instrumenter: Instrumenter,
         includeUntested: true
     }))
     .pipe(plugins.istanbul.hookRequire())
