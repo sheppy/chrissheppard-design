@@ -1,16 +1,18 @@
 /*eslint-env node */
 
-var path = require("path");
-var gulp = require("gulp");
-var plugins = require("gulp-load-plugins")();
-var streamqueue = require("streamqueue");
-var browserSync = require("browser-sync");
-var config = require("./config");
+import path from "path";
+import gulp from "gulp";
+import gulpLoadPlugins from "gulp-load-plugins";
+import streamQueue from "streamqueue";
+import browserSync from "browser-sync";
+import config from "./config";
+
+var plugins = gulpLoadPlugins();
 
 
 // Compile CSS
-gulp.task("css", function () {
-    var stream = streamqueue({ objectMode: true });
+gulp.task("css", () => {
+    var stream = streamQueue({ objectMode: true });
     stream.queue(gulp.src(config.file.normalize));
     stream.queue(
         gulp
@@ -39,7 +41,7 @@ gulp.task("css", function () {
 
 
 // Minify css and update html references
-gulp.task("css-prod", ["css"], function () {
+gulp.task("css-prod", ["css"], () => {
     var manifest = gulp
         .src(path.join(config.dir.css, config.glob.css))
         .pipe(plugins.plumber())

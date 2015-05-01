@@ -1,18 +1,10 @@
 /*eslint-env node */
 
-var gulp = require("gulp");
-var del = require("del");
-var config = require("./config");
+import gulp from "gulp";
+import del from "del";
+import config from "./config";
 
 
-gulp.task("clean:test", function (cb) {
-    del([
-        config.dir.coverage
-    ], cb);
-});
+gulp.task("clean:test", cb => del(config.dir.coverage, cb));
 
-gulp.task("clean", function (cb) {
-    del([
-        config.dir.dist
-    ], cb);
-});
+gulp.task("clean", cb => del(config.dir.dist, cb));
