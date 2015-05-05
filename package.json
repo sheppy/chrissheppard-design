@@ -18,6 +18,7 @@
     "url": "https://github.com/sheppy/chrissheppard-design/issues"
   },
   "homepage": "https://github.com/sheppy/chrissheppard-design",
+  "dependencies": {},
   "devDependencies": {
     "babel": "^5.2.5",
     "babelify": "^6.0.2",

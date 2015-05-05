@@ -46,7 +46,7 @@ gulp.task("js-prod", ["js", "modernizr"], () => {
         .pipe(plugins.rev())
         .pipe(plugins.rename({ extname: ".min.js" }))
         .pipe(plugins.bytediff.stop())
-        .pipe(gulp.dest(config.dir.assets))
+        .pipe(gulp.dest(config.dir.js))
         .pipe(plugins.rev.manifest())
         .pipe(plugins.plumber.stop());
 
