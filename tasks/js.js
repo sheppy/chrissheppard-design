@@ -99,7 +99,7 @@ gulp.task("js-test", (cb) => gulp
         .pipe(plugins.istanbul.writeReports({
             dir: config.dir.coverage,
             reportOpts: { dir: config.dir.coverage },
-            reporters: ["text", "text-summary", "json", "html"]
+            reporters: ["text-summary", "json", "html"]
         }))
         .pipe(plugins.istanbulEnforcer({
             thresholds: {
