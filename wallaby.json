@@ -1,8 +1,0 @@
-{
-  "files": [
-    "src/assets/js/**/*.js"
-  ],
-  "tests": [
-    "test/*Spec.js"
-  ]
-}
