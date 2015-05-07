@@ -74,22 +74,16 @@ export default class Router {
 
     navigate(path) {
         path = path ? path : "";
-        path = this.root + this.cleanSlashes(path);
+        path = this.cleanSlashes(this.root + path);
         history.pushState(null, null, path);
-        this.check(path);
-        return this;
+        return this.check(path);
     }
 
     listen() {
         if (Modernizr.history) {
-            window.addEventListener("popstate", this.onPopState.bind(this));
+            window.addEventListener("popstate", this.check.bind(this));
         }
 
         return this;
-    }
-
-    onPopState(e) {
-        console.log("onPopState", e);
-        this.check();
     }
 }
