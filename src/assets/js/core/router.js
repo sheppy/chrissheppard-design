@@ -28,7 +28,7 @@ export default class Router {
     }
 
     getFragment() {
-        var fragment = this.cleanSlashes(decodeURI(location.pathname));
+        let fragment = this.cleanSlashes(decodeURI(location.pathname));
         fragment = fragment.replace(this.root, "");
         return this.cleanSlashes(fragment);
     }
@@ -43,8 +43,8 @@ export default class Router {
     }
 
     remove(param) {
-        for (var i = 0; i < this.routes.length; i += 1) {
-            var r = this.routes[i];
+        for (let i = 0; i < this.routes.length; i += 1) {
+            let r = this.routes[i];
             if (r.handler === param || r.path.toString() === param.toString()) {
                 this.routes.splice(i, 1);
                 return this;
@@ -56,13 +56,11 @@ export default class Router {
     check(fragment) {
         fragment = fragment || this.getFragment();
 
-        var keys, regexRoute, match, routeParams;
-
         this.routes.find(function (route) {
-            routeParams = {};
-            keys = route.path.match(REGEX_ROUTE_PARAMS);
-            regexRoute = new RegExp(route.path.replace(REGEX_ROUTE_PARAMS, "([^\/]*)"));
-            match = fragment.match(regexRoute);
+            let routeParams = {};
+            let keys = route.path.match(REGEX_ROUTE_PARAMS);
+            let regexRoute = new RegExp(route.path.replace(REGEX_ROUTE_PARAMS, "([^\/]*)"));
+            let match = fragment.match(regexRoute);
 
             if (match) {
                 match.shift();

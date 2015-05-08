@@ -1,5 +1,5 @@
 /* global global, describe, it, beforeEach, afterEach */
-/* eslint no-unused-expressions: 0 */
+/* eslint no-unused-expressions: 0, max-statements: 0 */
 /* jslint -W030, -W071 */
 
 import _ from "lodash";
@@ -61,7 +61,7 @@ describe("Router", function () {
 
 
     describe("#cleanSlashes()", () => {
-        var tests = [
+        const tests = [
             { input: "no-leading/slash", output: "no-leading/slash" },
             { input: "/leading/slash", output: "/leading/slash" },
             { input: "///lots-leading/slash", output: "/lots-leading/slash" },
@@ -84,7 +84,7 @@ describe("Router", function () {
 
 
     describe("#getFragment()", () => {
-        var tests = [
+        const tests = [
             { input: "", output: "", root: "" },
             { input: "/asdasd/asd", output: "/asdasd/asd", root: "" },
             { input: "%22%C2%A3%25%5E", output: "\"£%^", root: "" },
@@ -108,7 +108,7 @@ describe("Router", function () {
 
 
     describe("#add()", () => {
-        var handler;
+        let handler;
 
         beforeEach(() => {
             this.router.routes = [];
@@ -143,7 +143,7 @@ describe("Router", function () {
 
 
     describe("#remove()", () => {
-        var routes;
+        let routes;
 
         beforeEach(() => {
             routes = [
@@ -257,7 +257,7 @@ describe("Router", function () {
 
 
     describe("#navigate()", () => {
-        var tests = [
+        const tests = [
             { output: "", root: "" },
             { output: "/", root: "/" },
             { input: "", output: "", root: "" },
