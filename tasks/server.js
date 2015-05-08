@@ -9,6 +9,7 @@ import config from "./config";
 gulp.task("server", ["dev"], () => {
     browserSync({
         ui: false,
+        open: false,
         server: {
             baseDir: config.dir.dist
         },

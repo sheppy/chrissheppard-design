@@ -3,6 +3,7 @@ require("babel/polyfill");
 import Router from "./core/router";
 
 var router = new Router();
+
 router
     .add("/about", function () {
         console.log("about route");
