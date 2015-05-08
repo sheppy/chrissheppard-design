@@ -258,8 +258,8 @@ describe("Router", function () {
 
     describe("#navigate()", () => {
         var tests = [
-            { input: null, output: "", root: "" },
-            { input: null, output: "/", root: "/" },
+            { output: "", root: "" },
+            { output: "/", root: "/" },
             { input: "", output: "", root: "" },
             { input: "", output: "/", root: "/" },
             { input: "/", output: "/", root: "/" },
@@ -299,5 +299,42 @@ describe("Router", function () {
     });
 
 
-    describe("#listen()", () => {});
+    describe("#listen()", () => {
+        beforeEach(function () {
+            global.Modernizr = {};
+            global.window = {
+                addEventListener: sinon.spy()
+            };
+        });
+
+        describe("when html5 history is not-supported", () => {
+            beforeEach(function () {
+                global.Modernizr.history = false;
+            });
+
+            it("returns the router", () => {
+                this.router.listen().should.equal(this.router);
+            });
+
+            it("does not listen for history changes", () => {
+                this.router.listen();
+                global.window.addEventListener.should.not.have.been.called;
+            });
+        });
+
+        describe("when html5 history is supported", () => {
+            beforeEach(function () {
+                global.Modernizr.history = true;
+            });
+
+            it("returns the router", () => {
+                this.router.listen().should.equal(this.router);
+            });
+
+            it("listens for history changes", () => {
+                this.router.listen();
+                global.window.addEventListener.should.have.been.calledWith("popstate", sinon.match.func);
+            });
+        });
+    });
 });

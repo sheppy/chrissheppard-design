@@ -16,7 +16,7 @@
     "maxerr": 50,
     "maxlen": 100,
     "maxparams": 4,
-    "maxstatements": 8,
+    "maxstatements": 9,
     "newcap": true,
     "noarg": true,
     "nocomma": false,

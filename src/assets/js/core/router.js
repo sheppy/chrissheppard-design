@@ -1,5 +1,10 @@
 /* global Modernizr */
 
+const REGEX_FORWARD_SLASH_ALL = /\/+/g;
+const REGEX_FORWARD_SLASH_TRAILING = /\/+$/;
+const REGEX_ROUTE_PARAMS = /:([^\/]+)/g;
+
+
 export default class Router {
     constructor() {
         this.reset();
@@ -13,13 +18,13 @@ export default class Router {
 
     cleanSlashes(path) {
         // Fix multiple slashes
-        path = path.replace(/\/+/g, "/");
+        path = path.replace(REGEX_FORWARD_SLASH_ALL, "/");
 
         if (path === "/") {
             return path;
         }
 
-        return path.toString().replace(/\/+$/, "");
+        return path.toString().replace(REGEX_FORWARD_SLASH_TRAILING, "");
     }
 
     getFragment() {
@@ -51,12 +56,13 @@ export default class Router {
     check(fragment) {
         fragment = fragment || this.getFragment();
 
-        var keys, match, routeParams;
+        var keys, regexRoute, match, routeParams;
 
         this.routes.find(function (route) {
             routeParams = {};
-            keys = route.path.match(/:([^\/]+)/g);
-            match = fragment.match(new RegExp(route.path.replace(/:([^\/]+)/g, "([^\/]*)")));
+            keys = route.path.match(REGEX_ROUTE_PARAMS);
+            regexRoute = new RegExp(route.path.replace(REGEX_ROUTE_PARAMS, "([^\/]*)"));
+            match = fragment.match(regexRoute);
 
             if (match) {
                 match.shift();
@@ -72,8 +78,7 @@ export default class Router {
         return this;
     }
 
-    navigate(path) {
-        path = path ? path : "";
+    navigate(path = "") {
         path = this.cleanSlashes(this.root + path);
         history.pushState(null, null, path);
         return this.check(path);
