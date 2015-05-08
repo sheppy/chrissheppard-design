@@ -300,15 +300,20 @@ describe("Router", function () {
 
 
     describe("#listen()", () => {
-        beforeEach(function () {
+        beforeEach(() => {
             global.Modernizr = {};
             global.window = {
                 addEventListener: sinon.spy()
             };
         });
 
+        afterEach(() => {
+            delete global.Modernizr;
+            delete global.window;
+        });
+
         describe("when html5 history is not-supported", () => {
-            beforeEach(function () {
+            beforeEach(() => {
                 global.Modernizr.history = false;
             });
 
@@ -323,7 +328,7 @@ describe("Router", function () {
         });
 
         describe("when html5 history is supported", () => {
-            beforeEach(function () {
+            beforeEach(() => {
                 global.Modernizr.history = true;
             });
 
