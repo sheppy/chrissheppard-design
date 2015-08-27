@@ -25,7 +25,7 @@
     "babelify": "^6.0.2",
     "browser-sync": "^2.7.1",
     "browserify": "^10.1.3",
-    "chai": "^2.3.0",
+    "chai": "^3.2.0",
     "del": "^1.1.1",
     "gulp": "^3.8.11",
     "gulp-autoprefixer": "^2.2.0",
@@ -43,7 +43,6 @@
     "gulp-humans": "^1.0.4",
     "gulp-istanbul": "^0.9.0",
     "gulp-istanbul-enforcer": "^1.0.3",
-    "gulp-jade": "^1.0.0",
     "gulp-jscpd": "0.0.4",
     "gulp-jscs": "^1.6.0",
     "gulp-jshint": "^1.10.0",
@@ -56,6 +55,7 @@
     "gulp-rev": "^3.0.1",
     "gulp-rev-replace": "^0.4.0",
     "gulp-sass": "^1.3.3",
+    "gulp-swig": "^0.7.4",
     "gulp-uglify": "^1.2.0",
     "gulp-uncss": "^1.0.1",
     "gulp-util": "^3.0.4",
@@ -66,7 +66,7 @@
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.0",
     "sinon": "^1.14.1",
-    "sinon-chai": "^2.7.0",
+    "sinon-chai": "^2.8.0",
     "streamqueue": "^0.1.3",
     "through2": "^0.6.5"
   }

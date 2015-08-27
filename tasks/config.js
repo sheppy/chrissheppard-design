@@ -3,7 +3,7 @@
 export default {
     glob: {
         html: "**/*.html",
-        jade: "**/*.jade",
+        swig: "**/*.swig",
         css: "**/*.css",
         scss: "**/*.scss",
         es6: "**/*.js",
@@ -16,7 +16,7 @@ export default {
         coverage: "./coverage",
         scss: "./src/assets/scss",
         css: "./public/assets/css",
-        jade: "./src/templates/pages",
+        swig: "./src/templates/pages",
         html: "./public",
         data: "./src/data",
         es6: "./src/assets/js",

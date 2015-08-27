@@ -9,26 +9,29 @@ import config from "./config";
 
 var plugins = gulpLoadPlugins();
 
+var onError = function(err) {
+    console.log(err);
+};
 
 var compileHTML = () => gulp
-    .src(path.join(config.dir.jade, config.glob.jade))
-    .pipe(plugins.plumber())
+    .src(path.join(config.dir.swig, config.glob.swig))
+    .pipe(plugins.plumber({
+        errorHandler: onError
+    }))
     .pipe(plugins.data(file => {
         // Extend with global data
         var global, page;
         try {
             global = JSON.parse(fs.readFileSync(path.join(config.dir.data, "global.json")));
             page = JSON.parse(fs.readFileSync(
-                path.join(config.dir.data, path.basename(file.path, ".jade") + ".json")
+                path.join(config.dir.data, path.basename(file.path, ".swig") + ".json")
             ));
         } catch (e) {
             plugins.util.log(plugins.util.colors.red(e.message));
         }
         return _.extend({}, global, page);
     }))
-    .pipe(plugins.jade({
-        pretty: true
-    }))
+    .pipe(plugins.swig())
     .pipe(plugins.plumber.stop());
 
 
