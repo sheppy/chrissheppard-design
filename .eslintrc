@@ -11,7 +11,7 @@
         "jasmine": false,
         "phantomjs": false,
         "prototypejs": false,
-        "shelljs ": false,
+        "shelljs": false,
         "jquery": false,
         "es6": true
     },
@@ -54,7 +54,7 @@
         "dot-notation": [
             2,
             {
-                "allowKeywords": 2,
+                "allowKeywords": true,
                 "allowPattern": ""
             }
         ],
@@ -126,7 +126,7 @@
         "no-sync": 0,
 
         // Stylistic Issues
-        "indent": [2, 4, {"indentSwitchCase": true}],
+        "indent": [2, 4, {"SwitchCase": 1}],
         "brace-style": [2, "1tbs", {"allowSingleLine": false}],
         "camelcase": 2,
         "comma-spacing": [2,
@@ -190,7 +190,7 @@
         "space-infix-ops": 2,
         "space-return-throw-case": 2,
         "space-unary-ops": 2,
-        "spaced-line-comment": ["always",
+        "spaced-comment": [2, "always",
             {
                 "exceptions": [
                     "-",
