@@ -9,6 +9,7 @@ import through2 from "through2";
 import browserify from "browserify";
 import babelify from "babelify";
 import {Instrumenter} from "isparta";
+import bundleCollapser from "bundle-collapser/plugin";
 import config from "./config";
 
 var plugins = gulpLoadPlugins();
@@ -19,6 +20,7 @@ gulp.task("js", () => {
     var bundler = through2.obj((file, enc, next) => {
         browserify(file.path)
             .transform(babelify)
+            .plugin(bundleCollapser)
             .bundle((err, res) => {
                 if (err) {
                     throw err;
