@@ -1,3 +1,9 @@
+{% import "components/_button.nunj" as button %}
+{% import "components/_image.nunj" as image %}
+{#{% import "components/_form.nunj" as form %}#}
+
+{% from "modules/navigation.nunj" import navigation %}
+
 <!doctype html>
 <html lang="en-GB">
 <head>
@@ -62,11 +68,7 @@
     <header role="banner">
         <h1><a href="/">Site</a></h1>
 
-        <nav role="navigation">
-            <ul>
-                <li><a href="/" rel="home">Home</a></li>
-            </ul>
-        </nav>
+        {{ navigation([{ title: "Home", link: "/" }]) }}
     </header>
 
     <main role="main">

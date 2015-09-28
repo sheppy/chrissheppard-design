@@ -1,3 +1,26 @@
+/*
+
+http://www.pearsonified.com/typography/
+http://www.gridlover.net/app/
+
+320
+f: 16px     - 11px
+l: 23px     - 18px
+
+480
+f: 16px     - 14px
+l: 24px     - 22px
+
+720
+f: 16px     - 17px
+l: 26px     - 27px
+
+760
+f: 16px     - 17px
+l: 27px     - 28px
+
+*/
+
 body {
     font-smoothing: antialiased;
     font-size: 18px;
@@ -67,10 +90,8 @@ blockquote {
 
 // Links
 a {
-    display: inline-block;
     outline: none;
     color: #257AD6;
-    //vertical-align: bottom;
     text-decoration: none;
     background-size: 2px 2px;
     background: linear-gradient(to bottom, rgba(#257AD6, 0) 50%, rgba(#257AD6, 0.6) 50%) repeat-x 0 1.1em;
@@ -81,7 +102,6 @@ a {
 }
 
 a {
-    white-space: nowrap;
     position: relative;
     margin: 0 0.25em;
 
