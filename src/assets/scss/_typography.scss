@@ -1,0 +1,116 @@
+body {
+    font-smoothing: antialiased;
+    font-size: 18px;
+    line-height: 26px;  // 1.625;
+    font-family: "Crimson Text", serif;
+}
+
+p, ul, ol, pre, table, blockquote {
+    margin-top: 26px;
+    margin-bottom: 26px;
+}
+
+ul ul, ol ol, ul ol, ol ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+// Headings
+.heading {
+    text-rendering: optimizeLegibility;
+    font-size: 68px;
+    line-height: 78px;
+    margin: 52px 0 26px;
+}
+
+.page-title {
+    text-rendering: optimizeLegibility;
+    font-size: 42px;
+    line-height: 52px;
+    margin: 52px 0 26px;
+}
+
+.section-header {
+    text-rendering: optimizeLegibility;
+    font-size: 26px;
+    line-height: 26px;
+    margin: 26px 0;
+}
+
+.sub-header {
+    text-rendering: optimizeLegibility;
+    font-size: 16px;
+    line-height: 26px;
+    margin: 26px 0;
+}
+
+.meta {
+    text-rendering: optimizeLegibility;
+    font-size: 14px;
+    line-height: 26px;
+    margin: 26px 0;
+    font-style: italic;
+}
+
+blockquote {
+    text-rendering: optimizeLegibility;
+    font-size: 26px;
+    line-height: 26px;
+    margin: 26px 26px;
+    padding-left: 1.5rem;
+    border-left: 5px solid #1F882C;
+
+    .quote-cite {
+        font-size: 16px;
+    }
+}
+
+// Links
+a {
+    display: inline-block;
+    outline: none;
+    color: #257AD6;
+    //vertical-align: bottom;
+    text-decoration: none;
+    background-size: 2px 2px;
+    background: linear-gradient(to bottom, rgba(#257AD6, 0) 50%, rgba(#257AD6, 0.6) 50%) repeat-x 0 1.1em;
+    transition: color 0.2s;
+    &:hover {
+        color: #1F882C;
+    }
+}
+
+a {
+    white-space: nowrap;
+    position: relative;
+    margin: 0 0.25em;
+
+    &:before,
+    &:after {
+        pointer-events: none;
+        backface-visibility: hidden;
+        position: absolute;
+        top: 0;
+        font-weight: 100;
+        font-size: 150%;
+        line-height: 1;
+        opacity: 0;
+        transition: opacity 0.2s, transform 0.2s;
+    }
+    &:before {
+        left: -0.25em;
+        content: "[";
+        transform: translateX(-100%);
+    }
+    &:after {
+        top: auto;
+        right: -0.25em;
+        content: "]";
+        transform: translateX(100%);
+    }
+    &:hover:before,
+    &:hover:after {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

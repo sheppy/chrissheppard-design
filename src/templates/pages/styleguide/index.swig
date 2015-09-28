@@ -1,0 +1,13 @@
+{% extends "../../layouts/main.swig" %}
+
+
+{% block content %}
+    <h1 class="page-title">Styleguide</h1>
+
+    <ul>
+        <li><a href="typography.html">Typography</a></li>
+        <li><a href="components.html">Components</a></li>
+        <li>Modules</li>
+    </ul>
+
+{% endblock %}

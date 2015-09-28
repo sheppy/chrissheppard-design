@@ -1,5 +1,4 @@
 /* eslint-env node */
-/* eslint no-console: 0 */
 
 import path from "path";
 import gulp from "gulp";
@@ -11,11 +10,12 @@ import config from "./config";
 var plugins = gulpLoadPlugins();
 
 var onError = function (err) {
-    console.log(err);
+    plugins.util.log(err);
+    this.emit("end");
 };
 
 var compileHTML = () => gulp
-    .src(path.join(config.dir.swig, config.glob.swig))
+    .src(path.join(config.dir.pages, config.glob.swig))
     .pipe(plugins.plumber({
         errorHandler: onError
     }))
@@ -28,11 +28,13 @@ var compileHTML = () => gulp
                 path.join(config.dir.data, path.basename(file.path, ".swig") + ".json")
             ));
         } catch (e) {
-            plugins.util.log(plugins.util.colors.red(e.message));
+            plugins.util.log(plugins.util.colors.yellow(e.message));
         }
         return _.extend({}, global, page);
     }))
-    .pipe(plugins.swig())
+    .pipe(plugins.swig({
+        defaults: { cache: false }
+    }))
     .pipe(plugins.plumber.stop());
 
 

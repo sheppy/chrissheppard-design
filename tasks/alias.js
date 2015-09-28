@@ -14,7 +14,7 @@ gulp.task("prod", ["test"], callback =>
     )
 );
 
-gulp.task("dev", ["test"], callback =>
+gulp.task("dev", ["lint"], callback =>
     runSequence(
         "clean",
         ["html", "modernizr", "css", "js"],
