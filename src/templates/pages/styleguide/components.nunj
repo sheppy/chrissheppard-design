@@ -1,8 +1,9 @@
-{% extends "../../layouts/main.swig" %}
+{% extends "layouts/main.nunj" %}
 
 
-{% import "../../components/_button.swig" as button %}
-{% import "../../components/_image.swig" as image %}
+{% import "components/_button.nunj" as button %}
+{% import "components/_image.nunj" as image %}
+
 
 {% block content %}
     <h1 class="page-title">Components</h1>

@@ -1,4 +1,4 @@
-{% extends "../../layouts/main.swig" %}
+{% extends "layouts/main.nunj" %}
 
 
 {% block content %}
@@ -9,5 +9,4 @@
         <li><a href="components.html">Components</a></li>
         <li>Modules</li>
     </ul>
-
 {% endblock %}

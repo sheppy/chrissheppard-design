@@ -1,6 +1,5 @@
-{% extends "../../layouts/main.swig" %}
+{% extends "layouts/main.nunj" %}
 
-{% import "../../components/_quote.swig" as quote %}
 
 {% block content %}
     <h1 class="heading">Typography</h1>
@@ -65,5 +64,4 @@
         fugiat mastercleanse. Direct trade gluten-free blog, fanny pack cray labore skateboard
         before they sold out adipisicing non magna id Helvetica freegan. Disrupt aliqua Brooklyn
         church-key lo-fi dreamcatcher.</p>
-
 {% endblock %}

@@ -1,4 +1,4 @@
-{% macro blockquote(quote, citeUrl, citation) %}
+{% macro blockquote(quote, citeUrl="", citation="") %}
     {% if citeUrl %}
         <blockquote cite="{{ citeUrl }}">
             {{ quote|safe }}

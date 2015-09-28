@@ -3,7 +3,7 @@
 export default {
     glob: {
         html: "**/*.html",
-        swig: "**/*.swig",
+        nunj: "**/*.nunj",
         css: "**/*.css",
         scss: "**/*.scss",
         es6: "**/*.js",

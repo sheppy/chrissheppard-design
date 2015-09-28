@@ -14,29 +14,30 @@ var onError = function (err) {
     this.emit("end");
 };
 
-var compileHTML = () => gulp
-    .src(path.join(config.dir.pages, config.glob.swig))
-    .pipe(plugins.plumber({
-        errorHandler: onError
-    }))
-    .pipe(plugins.data(file => {
-        // Extend with global data
-        var global, page;
-        try {
-            global = JSON.parse(fs.readFileSync(path.join(config.dir.data, "global.json")));
-            page = JSON.parse(fs.readFileSync(
-                path.join(config.dir.data, path.basename(file.path, ".swig") + ".json")
-            ));
-        } catch (e) {
-            plugins.util.log(plugins.util.colors.yellow(e.message));
-        }
-        return _.extend({}, global, page);
-    }))
-    .pipe(plugins.swig({
-        defaults: { cache: false }
-    }))
-    .pipe(plugins.plumber.stop());
+var compileHTML = function () {
+    plugins.nunjucksRender.nunjucks.configure([config.dir.templates], { watch: false });
 
+    return gulp
+        .src(path.join(config.dir.pages, config.glob.nunj))
+        .pipe(plugins.plumber({
+            errorHandler: onError
+        }))
+        .pipe(plugins.data(file => {
+            // Extend with global data
+            var global, page;
+            try {
+                global = JSON.parse(fs.readFileSync(path.join(config.dir.data, "global.json")));
+                page = JSON.parse(fs.readFileSync(
+                    path.join(config.dir.data, path.basename(file.path, ".nunj") + ".json")
+                ));
+            } catch (e) {
+                plugins.util.log(plugins.util.colors.yellow(e.message));
+            }
+            return _.extend({}, global, page);
+        }))
+        .pipe(plugins.nunjucksRender())
+        .pipe(plugins.plumber.stop());
+};
 
 // Validate HTML
 gulp.task("html-lint", () =>

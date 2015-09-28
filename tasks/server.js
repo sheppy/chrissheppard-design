@@ -21,7 +21,7 @@ gulp.task("server", ["dev"], () => {
     gulp.watch(path.join(config.dir.es6, config.glob.es6), ["js-lint", "js-test", "js"]);
 
     gulp.watch([
-        path.join(config.dir.templates, config.glob.swig),
+        path.join(config.dir.templates, config.glob.nunj),
         path.join(config.dir.data, config.glob.json)
     ], ["html", browserSync.reload]);
 });
