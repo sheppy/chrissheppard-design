@@ -1,4 +1,5 @@
-/*eslint-env node */
+/* eslint-env node */
+/* eslint no-console: 0 */
 
 import path from "path";
 import gulp from "gulp";
@@ -9,7 +10,7 @@ import config from "./config";
 
 var plugins = gulpLoadPlugins();
 
-var onError = function(err) {
+var onError = function (err) {
     console.log(err);
 };
 

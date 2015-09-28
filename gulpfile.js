@@ -1,4 +1,4 @@
-/*eslint-env node */
+/* eslint-env node */
 
 // Enable ES6 support
 require("babel/register");

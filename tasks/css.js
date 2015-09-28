@@ -1,4 +1,4 @@
-/*eslint-env node */
+/* eslint-env node */
 
 import path from "path";
 import gulp from "gulp";
