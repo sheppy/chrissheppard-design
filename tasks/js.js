@@ -3,7 +3,8 @@
 import path from "path";
 import gulp from "gulp";
 import gulpLoadPlugins from "gulp-load-plugins";
-import stylish from "jshint-stylish";
+import jsHintStylish from "jshint-stylish";
+import jscsStylish from "jscs-stylish";
 import through2 from "through2";
 import browserify from "browserify";
 import babelify from "babelify";
@@ -68,11 +69,14 @@ gulp.task("js-lint", () => gulp
     ])
     .pipe(plugins.plumber())
     .pipe(plugins.jshint())
-    .pipe(plugins.jshint.reporter(stylish))
+    .pipe(plugins.jshint.reporter(jsHintStylish))
     .pipe(plugins.eslint({ configFile: config.file.esLint, reset: true }))
     .pipe(plugins.eslint.format())
     .pipe(plugins.eslint.failOnError())
-    .pipe(plugins.jscs({ esnext: true }))
+    .pipe(plugins.jscs({
+        esnext: true,
+        reporter: jscsStylish
+    }))
     .pipe(plugins.filter(path.join(config.dir.tasks, config.glob.js)))
     .pipe(plugins.jscpd({
         "min-lines": 5,
