@@ -1,0 +1,7 @@
+@function rem($px) {
+    @return ($px / 16px) * 1rem;
+}
+
+@function em($px, $parent: 16px) {
+    @return ($px / $parent) * 1em;
+}

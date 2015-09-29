@@ -4,8 +4,8 @@ http://www.pearsonified.com/typography/
 http://www.gridlover.net/app/
 
 320
-f: 16px     - 11px
-l: 23px     - 18px
+f: 16px     - 14px
+l: 23px     - 21px
 
 480
 f: 16px     - 14px
@@ -23,14 +23,13 @@ l: 27px     - 28px
 
 body {
     font-smoothing: antialiased;
-    font-size: 18px;
-    line-height: 26px;  // 1.625;
     font-family: "Crimson Text", serif;
+
+    @include rwd-typographic-scale(1, false);
 }
 
 p, ul, ol, pre, table, blockquote {
-    margin-top: 26px;
-    margin-bottom: 26px;
+    @include rwd-typographic-margin(1);
 }
 
 ul ul, ol ol, ul ol, ol ul {
@@ -41,63 +40,56 @@ ul ul, ol ol, ul ol, ol ul {
 // Headings
 .heading {
     text-rendering: optimizeLegibility;
-    font-size: 68px;
-    line-height: 78px;
-    margin: 52px 0 26px;
+    @include rwd-typographic-scale(4);
 }
 
 .page-title {
     text-rendering: optimizeLegibility;
-    font-size: 42px;
-    line-height: 52px;
-    margin: 52px 0 26px;
+    @include rwd-typographic-scale(3);
 }
 
 .section-header {
     text-rendering: optimizeLegibility;
-    font-size: 26px;
-    line-height: 26px;
-    margin: 26px 0;
+    @include rwd-typographic-scale(2);
 }
 
 .sub-header {
     text-rendering: optimizeLegibility;
-    font-size: 16px;
-    line-height: 26px;
-    margin: 26px 0;
+    @include rwd-typographic-scale(1);
 }
 
 .meta {
     text-rendering: optimizeLegibility;
-    font-size: 14px;
-    line-height: 26px;
-    margin: 26px 0;
+    @include rwd-typographic-scale(0);
     font-style: italic;
 }
 
 blockquote {
     text-rendering: optimizeLegibility;
-    font-size: 26px;
-    line-height: 26px;
-    margin: 26px 26px;
-    padding-left: 1.5rem;
-    border-left: 5px solid #1F882C;
+    @include rwd-typographic-scale(2);
+    margin-left: 1.5em;
+    padding-left: 1.5em;
+    border-left: 5px solid $color-green;
+
+    p {
+        margin-bottom: 0.25em;
+    }
 
     .quote-cite {
-        font-size: 16px;
+        @include rwd-typographic-scale(1);
     }
 }
 
 // Links
 a {
     outline: none;
-    color: #257AD6;
+    color: $color-blue;
     text-decoration: none;
     background-size: 2px 2px;
-    background: linear-gradient(to bottom, rgba(#257AD6, 0) 50%, rgba(#257AD6, 0.6) 50%) repeat-x 0 1.1em;
+    background: linear-gradient(to bottom, rgba($color-blue, 0) 50%, rgba($color-blue, 0.6) 50%) repeat-x 0 1.1em;
     transition: color 0.2s;
     &:hover {
-        color: #1F882C;
+        color: $color-green;
     }
 }
 

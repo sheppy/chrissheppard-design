@@ -1,0 +1,35 @@
+$breakpoints: (
+    small:  480px,
+    medium: 760px,
+    large:  960px
+);
+
+$rwd-typography: (
+    default: (
+        base-font-size: 14px,
+        vertical-rhythm: 1.5,
+        type-scale: 1.25,
+        min-width: null
+    ),
+    small: (
+        base-font-size: 14px,
+        vertical-rhythm: 1.57,
+        type-scale: 1.33,
+        min-width: map-get($breakpoints, small)
+    ),
+    medium: (
+        base-font-size: 17px,
+        vertical-rhythm: 1.585,
+        type-scale: 1.5,
+        min-width: map-get($breakpoints, medium)
+    ),
+    large: (
+        base-font-size: 19px,
+        vertical-rhythm: 1.632,
+        type-scale: 1.618,
+        min-width: map-get($breakpoints, large)
+    )
+);
+
+$color-blue: #257AD6;
+$color-green: #1F882C;
