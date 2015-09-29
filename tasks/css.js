@@ -9,6 +9,10 @@ import config from "./config";
 
 var plugins = gulpLoadPlugins();
 
+var onError = function (err) {
+    plugins.util.log(err);
+    this.emit("end");
+};
 
 // Compile CSS
 gulp.task("css", () => {
@@ -17,13 +21,17 @@ gulp.task("css", () => {
     stream.queue(
         gulp
             .src(path.join(config.dir.scss, config.glob.scss))
-            .pipe(plugins.plumber())
+            .pipe(plugins.plumber({
+                errorHandler: onError
+            }))
             .pipe(plugins.sass())
             .pipe(plugins.plumber.stop())
     );
 
     return stream.done()
-        .pipe(plugins.plumber())
+        .pipe(plugins.plumber({
+            errorHandler: onError
+        }))
         .pipe(plugins.concat("main.css"))
         .pipe(plugins.autoprefixer({
             browsers: config.browsers,
