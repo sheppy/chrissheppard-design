@@ -1,18 +1,22 @@
 @import "variables";
 
+// Utils
 @import "util/units";
 @import "util/responsive";
 
-@import "typography";
+// Core
+@import "core/typography";
+@import "core/links";
+@import "core/layout";
+
+// Components
 @import "components/button";
+
+// Modules
+@import "modules/site-header";
+@import "modules/site-footer";
+
 
 body {
     color: #333;
-}
-
-main {
-    padding: 0 10px;
-    max-width: 960px;
-    margin: 0 auto;
-    box-sizing: border-box;
 }

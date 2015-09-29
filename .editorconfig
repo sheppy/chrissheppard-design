@@ -15,5 +15,5 @@ insert_final_newline = false
 [*.html]
 insert_final_newline = false
 
-[*.swig]
+[*.nunj]
 insert_final_newline = false

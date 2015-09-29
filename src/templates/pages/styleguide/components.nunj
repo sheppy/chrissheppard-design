@@ -2,16 +2,22 @@
 
 
 {% block content %}
-    <h1 class="page-title">Components</h1>
+    <div class="content">
+        <h1 class="heading">Components</h1>
 
-    <p>Below are all of the available components.</p>
+        <p>Below are all of the available components.</p>
 
-    <h2 class="section-header">Buttons</h2>
-    {{ button.standard("test") }}
-    {{ button.standard("teste2", "#") }}
+        <section>
+            <h1 class="section-header">Buttons</h1>
+            <h2 class="sub-header">Standard button</h2>
+            {{ button.standard("test") }}
+            {{ button.standard("teste2", "#") }}
+        </section>
 
-    <h2 class="section-header">Images</h2>
-    {{ image.figure("https://placeholdit.imgix.net/~text?txtsize=33&txt=Placeholder&w=220&h=189", "test", "test") }}
-
-
+        <section>
+            <h1 class="section-header">Images</h1>
+            <h2 class="sub-header">Figure</h2>
+            {{ image.figure("https://placeholdit.imgix.net/~text?txtsize=33&txt=Placeholder&w=220&h=189", "test", "test") }}
+        </section>
+    </div>
 {% endblock %}

@@ -1,0 +1,10 @@
+.content {
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0 10px;
+    max-width: breakpoint(large);
+}
+
+section {
+    @include rwd-typographic-margin(1);
+}

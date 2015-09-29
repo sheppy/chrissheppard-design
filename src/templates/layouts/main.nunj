@@ -1,6 +1,6 @@
 {% import "components/_button.nunj" as button %}
 {% import "components/_image.nunj" as image %}
-{#{% import "components/_form.nunj" as form %}#}
+{% import "components/_form.nunj" as form %}
 
 {% from "modules/navigation.nunj" import navigation %}
 
@@ -64,19 +64,22 @@
     <script src="/assets/js/modernizr.js"></script>
 </head>
 <body>
+    <header role="banner" class="site-header">
+        {% block siteHeader %}
+            <h1><a href="/">Site</a></h1>
 
-    <header role="banner">
-        <h1><a href="/">Site</a></h1>
-
-        {{ navigation([{ title: "Home", link: "/" }]) }}
+            {{ navigation([{ title: "Home", link: "/" }]) }}
+        {% endblock %}
     </header>
 
     <main role="main">
         {% block content %}{% endblock %}
     </main>
 
-    <footer role="contentinfo"></footer>
+    <footer role="contentinfo" class="site-footer">
+        {% block siteFooter %}{% endblock %}
+    </footer>
 
-    <script src="/assets/js/index.js"></script>
+    <script src="/assets/js/index.js" async></script>
 </body>
 </html>
