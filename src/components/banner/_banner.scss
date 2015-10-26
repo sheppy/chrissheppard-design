@@ -1,0 +1,47 @@
+.Banner {
+    overflow: hidden;
+
+    img {
+        min-width: 100%;
+        display: block;
+    }
+}
+
+.Banner--hero {
+    position: relative;
+    min-height: 150px;
+
+    .Banner-content {
+        position: absolute;
+        bottom: 0;
+    }
+
+    .Banner-title {
+        margin-bottom: 0;
+    }
+
+}
+
+
+.Banner--half {
+    display: flex;
+    flex-direction: row-reverse;
+    background: #333;
+    color: #eee;
+
+
+    .Banner-media {
+        flex: 1;
+        img {
+            min-height: 100%;
+        }
+    }
+    .Banner-content {
+        flex: 1;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        position: relative;
+        left: 20px;
+        background: #333;
+    }
+}

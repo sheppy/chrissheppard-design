@@ -1,0 +1,24 @@
+{% extends "layouts/main.nunj" %}
+
+
+{% block content %}
+    <style>
+        .ColourPalette {
+            padding: 0;
+        }
+
+        .ColourPalette li {
+            display: inline-block;
+            padding: 0 0.5em;
+        }
+    </style>
+
+    <div class="content">
+        <h1 class="heading">Colours</h1>
+
+        <ul class="ColourPalette">
+            <li style="background-color: #257AD6">$color-blue: #257AD6</li>
+            <li style="background-color: #1F882C">$color-green: #1F882C</li>
+        </ul>
+    </div>
+{% endblock %}

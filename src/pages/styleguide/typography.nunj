@@ -3,9 +3,7 @@
 
 {% block content %}
     <div class="content">
-        <h1 class="heading">Typography</h1>
-
-        <h2 class="page-title">Typewriter delectus cred</h2>
+        <h1 class="pageTitle">Typography</h1>
 
         <p>Bushwick Schlitz. Est Shoreditch small batch, dolor Schlitz <a href="#">sapiente twee
                 stumptown</a> ex. Duis Carles pickled, cornhole Thundercats McSweeney's minim PBR vegan
@@ -17,14 +15,14 @@
             facilis illo maxime numquam, perferendis porro qui quia quidem quis quisquam rem sapiente
             vel vitae. At, distinctio!</p>
 
-        <h3 class="section-header">Truffaut disrupt sartorial deserunt</h3>
+        <h2 class="section-header">Truffaut disrupt sartorial deserunt</h2>
 
         <p>Cosby sweater plaid shabby chic kitsch pour-over ex. Try-hard fanny pack mumblecore cornhole
             cray scenester. Assumenda narwhal occupy, Blue Bottle nihil culpa fingerstache. Meggings
             kogi vinyl meh, food truck banh mi Etsy magna 90's duis typewriter banjo organic leggings
             Vice.</p>
 
-        <h4 class="sub-header">Fingerstache nesciunt lomo nostrud hoodie</h4>
+        <h3 class="sub-header">Fingerstache nesciunt lomo nostrud hoodie</h3>
 
         <ul>
             <li>Roof party put a bird on it incididunt sed umami craft beer cred.</li>
@@ -53,7 +51,7 @@
 
         <blockquote cite="#">
             <p>This is an example quotation that uses the blockquote tag.</p>
-            <p class="quote-cite">
+            <p class="blockquote-cite">
                 <a href="#">
                     <cite>Author, 2009</cite>
                 </a>

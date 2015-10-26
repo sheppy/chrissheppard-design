@@ -3,9 +3,10 @@
 
 {% block content %}
     <div class="content">
-        <h1 class="heading">Styleguide</h1>
+        <h1 class="pageTitle">Styleguide</h1>
 
         <ul>
+            <li><a href="colours.html">Colours</a></li>
             <li><a href="typography.html">Typography</a></li>
             <li><a href="components.html">Components</a></li>
             <li><a href="modules.html">Modules</a></li>

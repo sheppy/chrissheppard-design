@@ -1,11 +1,17 @@
 {% import "components/button/_button.nunj" as button %}
 {% import "components/image/_image.nunj" as image %}
+{% import "components/banner/_banner.nunj" as banner %}
 {% import "components/form/_form.nunj" as form %}
 
-{% from "modules/navigation.nunj" import navigation %}
+{% from "modules/site-header/_site-header.nunj" import siteHeader %}
+{% from "modules/site-footer/_site-footer.nunj" import siteFooter %}
+{% from "modules/navigation/_navigation.nunj" import navigation %}
+
+
+{% set navItems =  [{ title: "Home", link: "/" }] %}
 
 <!doctype html>
-<html lang="en-GB">
+<html lang="en-GB" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -64,21 +70,13 @@
     <script src="/assets/modernizr.js"></script>
 </head>
 <body>
-    <header role="banner" class="site-header">
-        {% block siteHeader %}
-            <h1><a href="/">Site</a></h1>
-
-            {{ navigation([{ title: "Home", link: "/" }]) }}
-        {% endblock %}
-    </header>
+    {{ siteHeader("Site", navigation(navItems)) }}
 
     <main role="main">
         {% block content %}{% endblock %}
     </main>
 
-    <footer role="contentinfo" class="site-footer">
-        {% block siteFooter %}{% endblock %}
-    </footer>
+    {{ siteFooter() }}
 
     <script src="/assets/index.js" async></script>
 </body>

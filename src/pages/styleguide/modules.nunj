@@ -3,10 +3,10 @@
 
 {% block content %}
     <div class="content">
-        <h1 class="heading">Modules</h1>
+        <h1 class="pageTitle">Modules</h1>
 
         <p>Below are all of the available modules.</p>
 
-        <h2 class="section-header">TODO</h2>
+        <h2 class="sectionHeader">TODO</h2>
     </div>
 {% endblock %}

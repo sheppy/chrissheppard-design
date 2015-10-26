@@ -26,7 +26,8 @@ var compileHTML = function () {
         }))
         .pipe(plugins.data(file => {
             // Extend with global data
-            var global, page;
+            var page, global = {};
+
             try {
                 global = JSON.parse(fs.readFileSync(path.join(config.dir.src, config.dir.data, "global.json")));
                 page = JSON.parse(fs.readFileSync(
@@ -35,6 +36,10 @@ var compileHTML = function () {
             } catch (e) {
                 plugins.util.log(plugins.util.colors.yellow(e.message));
             }
+
+            //global.components = fs.readdirSync(path.join(config.dir.src, "components"))
+            //    .filter(f => fs.statSync(path.join(config.dir.src, "components", f)).isDirectory());
+
             return _.extend({}, global, page);
         }))
         .pipe(plugins.nunjucksRender())

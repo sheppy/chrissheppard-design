@@ -1,20 +1,21 @@
-@import "core/_variables";
+@import "core/variables";
 
 // Utils
-@import "util/_units";
-@import "util/_responsive";
+@import "util/units";
+@import "util/responsive";
 
 // Core
-@import "core/_typography";
-@import "core/_links";
-@import "core/_layout";
+@import "core/typography";
+@import "core/links";
+@import "core/layout";
 
 // Components
-@import "components/button/_button";
+@import "components/button/button";
+@import "components/banner/_banner";
 
 // Modules
-@import "modules/_site-header";
-@import "modules/_site-footer";
+@import "modules/site-header/site-header";
+@import "modules/site-footer/site-footer";
 
 
 body {

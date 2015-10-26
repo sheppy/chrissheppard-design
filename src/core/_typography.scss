@@ -38,22 +38,22 @@ ul ul, ol ol, ul ol, ol ul {
 }
 
 // Headings
-.heading {
-    text-rendering: optimizeLegibility;
-    @include rwd-typographic-scale(4);
-}
+//.heading {
+//    text-rendering: optimizeLegibility;
+//    @include rwd-typographic-scale(4);
+//}
 
-.page-title {
+.pageTitle {
     text-rendering: optimizeLegibility;
     @include rwd-typographic-scale(3);
 }
 
-.section-header {
+.sectionHeader {
     text-rendering: optimizeLegibility;
     @include rwd-typographic-scale(2);
 }
 
-.sub-header {
+.subHeader {
     text-rendering: optimizeLegibility;
     @include rwd-typographic-scale(1);
 }
@@ -66,7 +66,7 @@ ul ul, ol ol, ul ol, ol ul {
 
 blockquote {
     text-rendering: optimizeLegibility;
-    @include rwd-typographic-scale(2);
+    @include rwd-typographic-scale(1);
     margin-left: 1.5em;
     padding-left: 1.5em;
     border-left: 5px solid $color-green;
@@ -75,7 +75,7 @@ blockquote {
         margin-bottom: 0.25em;
     }
 
-    .quote-cite {
-        @include rwd-typographic-scale(1);
+    .blockquote-cite {
+        @include rwd-typographic-scale(0);
     }
 }

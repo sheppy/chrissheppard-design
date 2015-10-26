@@ -1,0 +1,7 @@
+{% macro siteHeader(title, navigation) %}
+    <header role="banner" class="siteHeader">
+        <h1><a href="/">{{ title }}</a></h1>
+
+        {{ navigation }}
+    </header>
+{% endmacro %}
