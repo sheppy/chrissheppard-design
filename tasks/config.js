@@ -11,19 +11,16 @@ export default {
         json: "**/*.json"
     },
     dir: {
-        src: "./src",
-        dist: "./public",
-        coverage: "./coverage",
-        scss: "./src/assets/scss",
-        css: "./public/assets/css",
-        pages: "./src/templates/pages",
-        templates: "./src/templates",
-        html: "./public",
-        data: "./src/data",
-        es6: "./src/assets/js",
-        js: "./public/assets/js",
-        assets: "./public/assets",
-        tasks: "./tasks"
+        src: "src",
+        dist: "public",
+        coverage: "coverage",
+        pages: "pages",
+        layouts: "layouts",
+        assets: "assets",
+        data: "data",
+        html: "",
+        tasks: "tasks",
+        test: "test"
     },
     file: {
         gulpfile: "./gulpfile.js",

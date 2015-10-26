@@ -20,7 +20,7 @@ gulp.task("css", () => {
     stream.queue(gulp.src(config.file.normalize));
     stream.queue(
         gulp
-            .src(path.join(config.dir.scss, config.glob.scss))
+            .src(path.join(config.dir.src, config.glob.scss))
             .pipe(plugins.plumber({
                 errorHandler: onError
             }))
@@ -43,7 +43,7 @@ gulp.task("css", () => {
         .pipe(plugins.csso())
         .pipe(plugins.cssbeautify({ autosemicolon: true }))
         .pipe(plugins.plumber.stop())
-        .pipe(gulp.dest(config.dir.css))
+        .pipe(gulp.dest(path.join(config.dir.dist, config.dir.assets)))
         .pipe(browserSync.reload({ stream: true }));
 });
 
@@ -62,7 +62,7 @@ gulp.task("css-prod", ["css"], () => {
         .pipe(plugins.rev())
         .pipe(plugins.rename({ extname: ".min.css" }))
         .pipe(plugins.bytediff.stop())
-        .pipe(gulp.dest(config.dir.css))
+        .pipe(gulp.dest(path.join(config.dir.dist, config.dir.assets)))
         .pipe(plugins.rev.manifest())
         .pipe(plugins.plumber.stop());
 
@@ -71,5 +71,5 @@ gulp.task("css-prod", ["css"], () => {
         .pipe(plugins.plumber())
         .pipe(plugins.revReplace({ manifest: manifest }))
         .pipe(plugins.plumber.stop())
-        .pipe(gulp.dest(config.dir.html));
+        .pipe(gulp.dest(path.join(config.dir.dist, config.dir.html)));
 });

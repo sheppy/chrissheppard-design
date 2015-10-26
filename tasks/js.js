@@ -31,34 +31,34 @@ gulp.task("js", () => {
     });
 
     return gulp
-        .src(path.join(config.dir.es6, "index.js"))
+        .src(path.join(config.dir.src, config.dir.assets, "js", "index.js"))
         .pipe(plugins.plumber())
         .pipe(bundler)
         .pipe(plugins.plumber.stop())
-        .pipe(gulp.dest(config.dir.js));
+        .pipe(gulp.dest(path.join(config.dir.dist, config.dir.assets)));
 });
 
 
 // Minify JS and update html references
 gulp.task("js-prod", ["js", "modernizr"], () => {
     var manifest = gulp
-        .src(path.join(config.dir.js, config.glob.js))
+        .src(path.join(config.dir.src, config.glob.js))
         .pipe(plugins.plumber())
         .pipe(plugins.bytediff.start())
         .pipe(plugins.uglify())
         .pipe(plugins.rev())
         .pipe(plugins.rename({ extname: ".min.js" }))
         .pipe(plugins.bytediff.stop())
-        .pipe(gulp.dest(config.dir.js))
+        .pipe(gulp.dest(config.dir.dist, config.dir.assets))
         .pipe(plugins.rev.manifest())
         .pipe(plugins.plumber.stop());
 
     return gulp
-        .src(path.join(config.dir.html, config.glob.html))
+        .src(path.join(config.dir.src, config.dir.html, config.glob.html))
         .pipe(plugins.plumber())
         .pipe(plugins.revReplace({ manifest: manifest }))
         .pipe(plugins.plumber.stop())
-        .pipe(gulp.dest(config.dir.html));
+        .pipe(gulp.dest(path.join(config.dir.dist, config.dir.html)));
 });
 
 
@@ -67,7 +67,7 @@ gulp.task("js-lint", () => gulp
     .src([
         config.file.gulpfile,
         path.join(config.dir.tasks, config.glob.js),
-        path.join(config.dir.es6, config.glob.es6)
+        path.join(config.dir.src, config.glob.es6)
     ])
     .pipe(plugins.plumber())
     .pipe(plugins.jshint())
@@ -91,7 +91,7 @@ gulp.task("js-lint", () => gulp
 
 // Tests and coverage
 gulp.task("js-test", (cb) => gulp
-    .src(path.join(config.dir.es6, config.glob.es6))
+    .src(path.join(config.dir.src, config.glob.es6))
     .pipe(plugins.plumber())
     .pipe(plugins.istanbul({
         instrumenter: Instrumenter,
@@ -99,7 +99,7 @@ gulp.task("js-test", (cb) => gulp
     }))
     .pipe(plugins.istanbul.hookRequire())
     .on("finish", () => gulp
-        .src(path.join("./test", config.glob.es6), { read: false })
+        .src(path.join(config.dir.test, config.glob.es6), { read: false })
         .pipe(plugins.plumber())
         .pipe(plugins.mocha({ reporter: "spec" }))
         .pipe(plugins.istanbul.writeReports({

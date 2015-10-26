@@ -11,11 +11,11 @@ var plugins = gulpLoadPlugins();
 // Compile Modernizr
 gulp.task("modernizr", () => gulp
     .src([
-        path.join(config.dir.es6, config.glob.es6),
-        path.join(config.dir.scss, config.glob.scss)
+        path.join(config.dir.src, config.glob.es6),
+        path.join(config.dir.src, config.glob.scss)
     ])
     .pipe(plugins.plumber())
     .pipe(plugins.modernizr())
     .pipe(plugins.plumber.stop())
-    .pipe(gulp.dest(config.dir.js))
+    .pipe(gulp.dest(path.join(config.dir.dist, config.dir.assets)))
 );

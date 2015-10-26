@@ -15,10 +15,12 @@ var onError = function (err) {
 };
 
 var compileHTML = function () {
-    plugins.nunjucksRender.nunjucks.configure([config.dir.templates], { watch: false });
+    plugins.nunjucksRender.nunjucks.configure([
+        config.dir.src
+    ], { watch: false });
 
     return gulp
-        .src(path.join(config.dir.pages, config.glob.nunj))
+        .src(path.join(config.dir.src, config.dir.pages, config.glob.nunj))
         .pipe(plugins.plumber({
             errorHandler: onError
         }))
@@ -26,9 +28,9 @@ var compileHTML = function () {
             // Extend with global data
             var global, page;
             try {
-                global = JSON.parse(fs.readFileSync(path.join(config.dir.data, "global.json")));
+                global = JSON.parse(fs.readFileSync(path.join(config.dir.src, config.dir.data, "global.json")));
                 page = JSON.parse(fs.readFileSync(
-                    path.join(config.dir.data, path.basename(file.path, ".nunj") + ".json")
+                    path.join(config.dir.src, config.dir.data, path.basename(file.path, ".nunj") + ".json")
                 ));
             } catch (e) {
                 plugins.util.log(plugins.util.colors.yellow(e.message));
@@ -51,7 +53,7 @@ gulp.task("html-lint", () =>
 // Save HTML
 gulp.task("html", () =>
     compileHTML()
-        .pipe(gulp.dest(config.dir.html))
+        .pipe(gulp.dest(config.dir.dist, config.dir.html))
 );
 
 
