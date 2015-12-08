@@ -15,20 +15,19 @@ var errorHandler = function (err) {
     this.emit("end");
 };
 
-// Compile CSS
-gulp.task("css", () => {
-    // Prepend normalize css
-    var stream = streamQueue({ objectMode: true });
-    stream.queue(gulp.src(config.file.normalize));
-    stream.queue(
-        gulp
-            .src(path.join(config.dir.src, config.glob.scss))
-            .pipe(plugins.plumber({ errorHandler }))
-            .pipe(plugins.sass())
-            .pipe(plugins.plumber.stop())
-    );
 
-    return stream.done()
+var buildCss = function () {
+    // Prepend normalize css
+    return streamQueue({ objectMode: true })
+        .queue(gulp.src(config.file.normalize))
+        .queue(
+            gulp
+                .src(path.join(config.dir.src, config.glob.scss))
+                .pipe(plugins.plumber({ errorHandler }))
+                .pipe(plugins.sass())
+                .pipe(plugins.plumber.stop())
+        )
+        .done()
         .pipe(plugins.plumber({ errorHandler }))
         .pipe(plugins.concat("main.css"))
         .pipe(plugins.autoprefixer({
@@ -40,19 +39,31 @@ gulp.task("css", () => {
         .pipe(plugins.minifyCss({ keepSpecialComments: 0 }))
         .pipe(plugins.csso())
         .pipe(plugins.cssbeautify({ autosemicolon: true }))
+        .pipe(plugins.plumber.stop());
+};
+
+
+// Compile CSS
+gulp.task("css", () => {
+    return buildCss()
         .pipe(gulp.dest(path.join(config.dir.dist, config.dir.assets)))
         .pipe(browserSync.reload({ stream: true }));
 });
 
 
 // Minify css and update html references
-gulp.task("css-prod", ["css"], () => {
-    var manifest = gulp
-        .src(path.join(config.dir.css, config.glob.css))
+gulp.task("css-prod", () => {
+    // Build CSS
+    var manifest = buildCss()
+        // Minify and save
         .pipe(plugins.plumber({ errorHandler }))
         .pipe(plugins.bytediff.start())
         .pipe(plugins.uncss({
-            html: [path.join(config.dir.html, config.glob.html)],
+            html: [
+                path.join(config.dir.dist, config.dir.html, config.glob.html),
+                "!" + path.join(config.dir.dist, config.dir.html, "styleguide", config.glob.html)
+            ],
+            ignoreSheets: [/fonts.googleapis/],
             ignore: []
         }))
         .pipe(plugins.csso())
@@ -60,11 +71,14 @@ gulp.task("css-prod", ["css"], () => {
         .pipe(plugins.rename({ extname: ".min.css" }))
         .pipe(plugins.bytediff.stop())
         .pipe(gulp.dest(path.join(config.dir.dist, config.dir.assets)))
+
+        // Generate manifest
         .pipe(plugins.rev.manifest())
         .pipe(plugins.plumber.stop());
 
+    // Update HTML
     return gulp
-        .src(path.join(config.dir.html, config.glob.html))
+        .src(path.join(config.dir.dist, config.dir.html, config.glob.html))
         .pipe(plugins.plumber({ errorHandler }))
         .pipe(plugins.revReplace({ manifest: manifest }))
         .pipe(gulp.dest(path.join(config.dir.dist, config.dir.html)));

@@ -15,6 +15,7 @@ var errorHandler = function (err) {
     this.emit("end");
 };
 
+
 var compileHTML = function () {
     plugins.nunjucksRender.nunjucks.configure([
         config.dir.src
@@ -45,20 +46,13 @@ var compileHTML = function () {
         .pipe(plugins.plumber.stop());
 };
 
+
 // Validate HTML
-gulp.task("html-lint", () =>
-    compileHTML()
-        .pipe(plugins.plumber({ errorHandler }))
-        .pipe(plugins.html5Lint())
-        .pipe(plugins.plumber.stop())
-);
+gulp.task("html-lint", () => compileHTML().pipe(plugins.plumber({ errorHandler })).pipe(plugins.html5Lint()));
 
 
 // Save HTML
-gulp.task("html", () =>
-    compileHTML()
-        .pipe(gulp.dest(config.dir.dist, config.dir.html))
-);
+gulp.task("html", () => compileHTML().pipe(gulp.dest(config.dir.dist, config.dir.html)));
 
 
 // Save production HTML
@@ -75,5 +69,5 @@ gulp.task("html-prod", () =>
             removeEmptyAttributes: true,
             removeScriptTypeAttributes: true
         }))
-        .pipe(gulp.dest(config.dir.html))
+        .pipe(gulp.dest(config.dir.dist, config.dir.html))
 );

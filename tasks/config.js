@@ -17,6 +17,7 @@ export default {
         layouts: "layouts",
         assets: "assets",
         data: "data",
+        js: "js",
         html: "",
         tasks: "tasks",
         test: "test"

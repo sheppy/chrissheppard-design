@@ -10,50 +10,81 @@ import browserify from "browserify";
 import babelify from "babelify";
 import {Instrumenter} from "isparta";
 import bundleCollapser from "bundle-collapser/plugin";
+import streamQueue from "streamqueue";
 import config from "./config";
 
 const plugins = gulpLoadPlugins();
 
 
-// Compile JS
-gulp.task("js", () => {
-    var bundler = through2.obj((file, enc, next) => {
-        browserify(file.path)
-            .transform(babelify)
-            .plugin(bundleCollapser)
-            .bundle((err, res) => {
-                if (err) {
-                    return next(err);
-                }
-                file.contents = res;
-                next(null, file);
-            });
-    });
-
+// Build custom modernizr based on css and js
+var buildModernizr = function () {
     return gulp
-        .src(path.join(config.dir.src, config.dir.assets, "js", "index.js"))
+        .src([
+            path.join(config.dir.src, config.glob.js),
+            path.join(config.dir.src, config.glob.scss)
+        ])
         .pipe(plugins.plumber())
-        .pipe(bundler)
-        .pipe(gulp.dest(path.join(config.dir.dist, config.dir.assets)));
-});
+        .pipe(plugins.modernizr())
+        .pipe(plugins.plumber.stop());
+};
+
+
+// Build JS
+var buildJs = function (isProd = false) {
+    return gulp
+        .src(path.join(config.dir.src, config.dir.assets, config.dir.js, "index.js"))
+        .pipe(plugins.plumber())
+        .pipe(through2.obj((file, enc, next) => {
+            browserify(file.path, {
+                // bundleExternal: false,
+                debug: !isProd
+            })
+                .transform(babelify)
+                .plugin(bundleCollapser)
+                .bundle((err, res) => {
+                    if (err) {
+                        return next(err);
+                    }
+                    file.contents = res;
+                    next(null, file);
+                });
+        }))
+        .pipe(plugins.plumber.stop());
+};
+
+
+// Compile dev JS
+gulp.task("js", () => buildJs(false).pipe(gulp.dest(path.join(config.dir.dist, config.dir.assets))));
+
+
+// Compile modernizr JS
+gulp.task("modernizr", () => buildModernizr().pipe(gulp.dest(path.join(config.dir.dist, config.dir.assets))));
 
 
 // Minify JS and update html references
-gulp.task("js-prod", ["js", "modernizr"], () => {
-    var manifest = gulp
-        .src(path.join(config.dir.src, config.glob.js))
+gulp.task("js-prod", () => {
+    let manifest = streamQueue({ objectMode: true })
+        // Build JS and Modernizr
+        .queue(buildModernizr())
+        .queue(buildJs(true))
+        .done()
+
+        // Minify and save
         .pipe(plugins.plumber())
         .pipe(plugins.bytediff.start())
         .pipe(plugins.uglify())
         .pipe(plugins.rev())
         .pipe(plugins.rename({ extname: ".min.js" }))
         .pipe(plugins.bytediff.stop())
-        .pipe(gulp.dest(config.dir.dist, config.dir.assets))
+        .pipe(gulp.dest(path.join(config.dir.dist, config.dir.assets)))
+
+        // Generate manifest
         .pipe(plugins.rev.manifest())
         .pipe(plugins.plumber.stop());
 
+    // Update HTML
     return gulp
-        .src(path.join(config.dir.src, config.dir.html, config.glob.html))
+        .src(path.join(config.dir.dist, config.dir.html, config.glob.html))
         .pipe(plugins.plumber())
         .pipe(plugins.revReplace({ manifest: manifest }))
         .pipe(gulp.dest(path.join(config.dir.dist, config.dir.html)));
@@ -64,13 +95,17 @@ gulp.task("js-prod", ["js", "modernizr"], () => {
 gulp.task("js-lint", () => gulp
     .src([
         config.file.gulpfile,
-        path.join(config.dir.tasks, config.glob.js),
-        path.join(config.dir.src, config.glob.js)
+        path.join(config.dir.src, config.glob.js),
+        path.join(config.dir.test, config.glob.js),
+        path.join(config.dir.tasks, config.glob.js)
     ])
     .pipe(plugins.plumber())
     .pipe(plugins.jshint())
     .pipe(plugins.jshint.reporter(jsHintStylish))
-    .pipe(plugins.eslint({ configFile: config.file.esLint, reset: true }))
+    .pipe(plugins.eslint({
+        configFile: config.file.esLint,
+        reset: true
+    }))
     .pipe(plugins.eslint.format())
     .pipe(plugins.eslint.failOnError())
     .pipe(plugins.jscs({
