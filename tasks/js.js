@@ -12,7 +12,7 @@ import {Instrumenter} from "isparta";
 import bundleCollapser from "bundle-collapser/plugin";
 import config from "./config";
 
-var plugins = gulpLoadPlugins();
+const plugins = gulpLoadPlugins();
 
 
 // Compile JS
@@ -23,7 +23,7 @@ gulp.task("js", () => {
             .plugin(bundleCollapser)
             .bundle((err, res) => {
                 if (err) {
-                    throw err;
+                    return next(err);
                 }
                 file.contents = res;
                 next(null, file);
@@ -34,7 +34,6 @@ gulp.task("js", () => {
         .src(path.join(config.dir.src, config.dir.assets, "js", "index.js"))
         .pipe(plugins.plumber())
         .pipe(bundler)
-        .pipe(plugins.plumber.stop())
         .pipe(gulp.dest(path.join(config.dir.dist, config.dir.assets)));
 });
 
@@ -57,7 +56,6 @@ gulp.task("js-prod", ["js", "modernizr"], () => {
         .src(path.join(config.dir.src, config.dir.html, config.glob.html))
         .pipe(plugins.plumber())
         .pipe(plugins.revReplace({ manifest: manifest }))
-        .pipe(plugins.plumber.stop())
         .pipe(gulp.dest(path.join(config.dir.dist, config.dir.html)));
 });
 
@@ -67,7 +65,7 @@ gulp.task("js-lint", () => gulp
     .src([
         config.file.gulpfile,
         path.join(config.dir.tasks, config.glob.js),
-        path.join(config.dir.src, config.glob.es6)
+        path.join(config.dir.src, config.glob.js)
     ])
     .pipe(plugins.plumber())
     .pipe(plugins.jshint())
@@ -85,13 +83,12 @@ gulp.task("js-lint", () => gulp
         "min-tokens": 70,
         verbose: true
     }))
-    .pipe(plugins.plumber.stop())
 );
 
 
 // Tests and coverage
 gulp.task("js-test", (cb) => gulp
-    .src(path.join(config.dir.src, config.glob.es6))
+    .src(path.join(config.dir.src, config.glob.js))
     .pipe(plugins.plumber())
     .pipe(plugins.istanbul({
         instrumenter: Instrumenter,
@@ -99,7 +96,7 @@ gulp.task("js-test", (cb) => gulp
     }))
     .pipe(plugins.istanbul.hookRequire())
     .on("finish", () => gulp
-        .src(path.join(config.dir.test, config.glob.es6), { read: false })
+        .src(path.join(config.dir.test, config.glob.js), { read: false })
         .pipe(plugins.plumber())
         .pipe(plugins.mocha({ reporter: "spec" }))
         .pipe(plugins.istanbul.writeReports({
@@ -120,5 +117,4 @@ gulp.task("js-test", (cb) => gulp
         .pipe(plugins.plumber.stop())
         .on("end", cb)
     )
-    .pipe(plugins.plumber.stop())
 );

@@ -7,9 +7,10 @@ import fs from "fs";
 import _ from "lodash";
 import config from "./config";
 
-var plugins = gulpLoadPlugins();
+const plugins = gulpLoadPlugins();
 
-var onError = function (err) {
+
+var errorHandler = function (err) {
     plugins.util.log(err);
     this.emit("end");
 };
@@ -21,9 +22,7 @@ var compileHTML = function () {
 
     return gulp
         .src(path.join(config.dir.src, config.dir.pages, config.glob.nunj))
-        .pipe(plugins.plumber({
-            errorHandler: onError
-        }))
+        .pipe(plugins.plumber({ errorHandler }))
         .pipe(plugins.data(file => {
             // Extend with global data
             var page, global = {};
@@ -49,7 +48,7 @@ var compileHTML = function () {
 // Validate HTML
 gulp.task("html-lint", () =>
     compileHTML()
-        .pipe(plugins.plumber())
+        .pipe(plugins.plumber({ errorHandler }))
         .pipe(plugins.html5Lint())
         .pipe(plugins.plumber.stop())
 );
@@ -65,7 +64,7 @@ gulp.task("html", () =>
 // Save production HTML
 gulp.task("html-prod", () =>
     compileHTML()
-        .pipe(plugins.plumber())
+        .pipe(plugins.plumber({ errorHandler }))
         .pipe(plugins.htmlmin({
             collapseWhitespace: true,
             preserveLineBreaks: true,
@@ -76,6 +75,5 @@ gulp.task("html-prod", () =>
             removeEmptyAttributes: true,
             removeScriptTypeAttributes: true
         }))
-        .pipe(plugins.plumber.stop())
         .pipe(gulp.dest(config.dir.html))
 );

@@ -18,7 +18,7 @@ gulp.task("server", ["dev"], () => {
 
     gulp.watch(path.join(config.dir.src, config.glob.scss), ["css"]);
 
-    gulp.watch(path.join(config.dir.src, config.glob.es6), ["js-lint", "js-test", "js"]);
+    gulp.watch(path.join(config.dir.src, config.glob.js), ["js-lint", "js-test", "js"]);
 
     gulp.watch([
         path.join(config.dir.src, config.glob.nunj),
