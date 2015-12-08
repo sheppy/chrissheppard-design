@@ -37,7 +37,7 @@ var compileHTML = function () {
                 plugins.util.log(plugins.util.colors.yellow(e.message));
             }
 
-            //global.components = fs.readdirSync(path.join(config.dir.src, "components"))
+            // global.components = fs.readdirSync(path.join(config.dir.src, "components"))
             //    .filter(f => fs.statSync(path.join(config.dir.src, "components", f)).isDirectory());
 
             return _.extend({}, global, page);

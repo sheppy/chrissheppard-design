@@ -14,8 +14,8 @@ pids
 lib-cov
 coverage
 .grunt
-node_modules
-bower_components
+node_modules/
+bower_components/
 
 ### Sass template
 .sass-cache
@@ -25,3 +25,4 @@ bower_components
 .idea/
 
 coverage/
+public/

@@ -17,7 +17,7 @@
   "disallowKeywords": ["with"],
   "disallowMixedSpacesAndTabs": true,
   "disallowMultipleLineStrings": true,
-  "disallowMultipleVarDecl": "exceptUndefined",
+  "disallowMultipleVarDecl": false,
   "disallowNewlineBeforeBlockStatements": true,
   "disallowOperatorBeforeLineBreak": ["+", "."],
   "disallowQuotedKeysInObjects": true,

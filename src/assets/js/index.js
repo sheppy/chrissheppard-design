@@ -6,17 +6,17 @@ const router = new Router();
 
 router
     .add("/about", () => {
-        console.log("about route");
+        // console.log("about route");
     })
     .add("/products/:productId/edit/:extra", () => {
-        console.log("products route", arguments);
+        // console.log("products route", arguments);
     })
     .add(() => {
-        console.log("default route");
+        // console.log("default route");
     })
     .listen();
 
-//router.navigate("/about");
+// router.navigate("/about");
 
 // For testing
 window.router = router;
