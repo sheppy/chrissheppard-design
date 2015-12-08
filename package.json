@@ -6,6 +6,7 @@
   "main": "gulpfile.js",
   "scripts": {
     "postinstall": "npm run bower",
+    "start": "node src/server.js",
     "test": "gulp test",
     "build": "gulp prod",
     "bower": "bower install"
@@ -20,7 +21,10 @@
     "url": "https://github.com/sheppy/chrissheppard-design/issues"
   },
   "homepage": "https://github.com/sheppy/chrissheppard-design",
-  "dependencies": {},
+  "dependencies": {
+    "connect": "^3.4.0",
+    "serve-static": "^1.10.0"
+  },
   "devDependencies": {
     "babel-core": "^6.3.15",
     "babel-polyfill": "^6.3.14",

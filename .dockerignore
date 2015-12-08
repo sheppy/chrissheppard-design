@@ -1,0 +1,7 @@
+# Root files
+.git/
+.editorconfig
+.gitignore
+LICENSE
+README.md
+wallaby.js

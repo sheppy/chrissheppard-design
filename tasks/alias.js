@@ -10,6 +10,7 @@ gulp.task("prod", ["test"], callback =>
         "html-prod",
         "css-prod",
         "js-prod",
+        // "humans",
         callback
     )
 );
