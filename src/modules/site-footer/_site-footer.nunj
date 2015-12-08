@@ -1,3 +1,3 @@
 {% macro siteFooter() %}
-    <footer role="contentinfo" class="siteFooter"></footer>
+    <footer class="siteFooter"></footer>
 {% endmacro %}

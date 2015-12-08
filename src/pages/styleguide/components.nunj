@@ -8,8 +8,8 @@
         <p>Below are all of the available components.</p>
 
         <section>
-            <h1 class="sectionHeader">Buttons</h1>
-            <h2 class="subHeader">Standard button</h2>
+            <h2 class="sectionHeader">Buttons</h2>
+            <h3 class="subHeader">Standard button</h3>
             {{ button.standard("Button") }}
             {{ button.standard("Link", "#") }}
 
@@ -21,19 +21,19 @@
         </section>
 
         <section>
-            <h1 class="sectionHeader">Images</h1>
+            <h2 class="sectionHeader">Images</h2>
 
-            <h2 class="subHeader">Figure</h2>
+            <h3 class="subHeader">Figure</h3>
             {{ image.figure("//placehold.it/220x189?text=Placeholder", "Alt", "Caption") }}
         </section>
 
         <section>
-            <h1 class="sectionHeader">Banners</h1>
+            <h2 class="sectionHeader">Banners</h2>
 
-            <h2 class="subHeader">Hero</h2>
+            <h3 class="subHeader">Hero</h3>
             {{ banner.hero("//placehold.it/220x189?text=Placeholder", "Hero Banner", "Strapline") }}
 
-            <h2 class="subHeader">Half</h2>
+            <h3 class="subHeader">Half</h3>
             {{ banner.half("//placehold.it/220x189?text=Placeholder", "Half Banner", "Strapline", "<p>HTML</p>") }}
         </section>
 

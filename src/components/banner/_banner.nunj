@@ -5,7 +5,7 @@
         </div>
 
         <div class="Banner-content">
-            <h1 class="HeroBanner-title pageTitle">{{ title }}</h1>
+            <h2 class="HeroBanner-title pageTitle">{{ title }}</h2>
             {% if strapline %}
                 <p class="HeroBanner-strapline">{{ strapline }}</p>
             {% endif %}
@@ -21,7 +21,7 @@
         </div>
 
         <div class="Banner-content">
-            <h1 class="HeroBanner-title pageTitle">{{ title }}</h1>
+            <h2 class="HeroBanner-title pageTitle">{{ title }}</h2>
             {% if strapline %}
                 <p class="HeroBanner-strapline">{{ strapline }}</p>
             {% endif %}
