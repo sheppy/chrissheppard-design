@@ -7,6 +7,8 @@ import chai from "chai";
 import sinon from "sinon";
 import sinonChai from "sinon-chai";
 
+require("babel-polyfill");
+
 chai.should();
 chai.use(sinonChai);
 

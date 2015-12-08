@@ -39,7 +39,9 @@ var buildJs = function (isProd = false) {
                 // bundleExternal: false,
                 debug: !isProd
             })
-                .transform(babelify)
+                .transform(babelify, {
+                    presets: ["es2015"]
+                })
                 .plugin(bundleCollapser)
                 .bundle((err, res) => {
                     if (err) {
