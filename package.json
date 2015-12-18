@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "description": "",
-  "main": "gulpfile.js",
+  "main": "dist",
   "scripts": {
     "start": "node src/server.js",
     "test": "gulp test",
