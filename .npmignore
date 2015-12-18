@@ -1,0 +1,18 @@
+# Root files
+.git/
+bower_components/
+public/
+src/
+tasks/
+test/
+.babelrc
+.dockerignore
+.editorconfig
+.eslintrc
+.gitignore
+.jscsrc
+.jshintrc
+bower.json
+Dockerfile
+gulpfile.js
+wallaby.js
