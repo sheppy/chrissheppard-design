@@ -15,8 +15,35 @@ var errorHandler = function (err) {
     this.emit("end");
 };
 
-
+/*
 var buildCss = function () {
+    var autoprefixer = require("autoprefixer");
+    var mqpacker = require("css-mqpacker");
+
+    var processors = [
+        autoprefixer({
+            browsers: config.browsers,
+            cascade: false
+        }),
+        mqpacker
+    ];
+
+    return gulp.src([
+        config.file.normalize,
+        path.join(config.dir.src, config.glob.css)
+    ])
+    .pipe(plugins.plumber({ errorHandler }))
+    .pipe(plugins.concat("main.css"))
+    .pipe(plugins.postcss(processors))
+        //.pipe(plugins.csscomb())
+        //.pipe(plugins.minifyCss({ keepSpecialComments: 0 }))
+        //.pipe(plugins.csso())
+        //.pipe(plugins.cssbeautify({ autosemicolon: true }))
+    .pipe(plugins.plumber.stop());
+};
+*/
+
+var buildSass = function () {
     // Prepend normalize css
     return streamQueue({ objectMode: true })
         .queue(gulp.src(config.file.normalize))
@@ -45,7 +72,7 @@ var buildCss = function () {
 
 // Compile CSS
 gulp.task("css", () => {
-    return buildCss()
+    return buildSass()
         .pipe(gulp.dest(path.join(config.dir.dist, config.dir.assets)))
         .pipe(browserSync.reload({ stream: true }));
 });
@@ -54,7 +81,7 @@ gulp.task("css", () => {
 // Minify css and update html references
 gulp.task("css-prod", () => {
     // Build CSS
-    var manifest = buildCss()
+    var manifest = buildSass()
         // Minify and save
         .pipe(plugins.plumber({ errorHandler }))
         .pipe(plugins.bytediff.start())
