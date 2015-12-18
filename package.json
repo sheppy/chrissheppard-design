@@ -5,7 +5,6 @@
   "description": "",
   "main": "gulpfile.js",
   "scripts": {
-    "postinstall": "npm run bower",
     "start": "node src/server.js",
     "test": "gulp test",
     "dist": "gulp dist",
