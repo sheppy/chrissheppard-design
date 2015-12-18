@@ -48,26 +48,20 @@ var compileHTML = function () {
 
 
 // Validate HTML
-gulp.task("html-lint", () => compileHTML().pipe(plugins.plumber({ errorHandler })).pipe(plugins.html5Lint()));
+gulp.task("html:lint", () => compileHTML().pipe(plugins.plumber({ errorHandler })).pipe(plugins.html5Lint()));
 
 
 // Save HTML
-gulp.task("html", () => compileHTML().pipe(gulp.dest(config.dir.dist, config.dir.html)));
+gulp.task("html:dev", () => compileHTML().pipe(gulp.dest(config.dir.dev, config.dir.html)));
 
 
-// Save production HTML
-gulp.task("html-prod", () =>
-    compileHTML()
+// Copy nunjucks template to dist directory
+gulp.task("html:dist", () =>
+    gulp
+        .src([
+            path.join(config.dir.src, config.glob.nunj),
+            "!" + path.join(config.dir.src, "pages", "styleguide", config.glob.nunj)
+        ])
         .pipe(plugins.plumber({ errorHandler }))
-        .pipe(plugins.htmlmin({
-            collapseWhitespace: true,
-            preserveLineBreaks: true,
-            removeComments: false,
-            collapseBooleanAttributes: true,
-            removeAttributeQuotes: false,
-            removeRedundantAttributes: true,
-            removeEmptyAttributes: true,
-            removeScriptTypeAttributes: true
-        }))
-        .pipe(gulp.dest(config.dir.dist, config.dir.html))
+        .pipe(gulp.dest(path.join(config.dir.dist, "view")))
 );

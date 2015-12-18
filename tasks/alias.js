@@ -4,26 +4,24 @@ import gulp from "gulp";
 import runSequence from "run-sequence";
 
 
-gulp.task("prod", ["test"], callback =>
+gulp.task("dist", ["test"], callback =>
     runSequence(
-        "clean",
-        "html-prod",
-        "css-prod",
-        "js-prod",
+        "clean:dist",
+        "html:dist",
+        "css:dist",
+        "js:dist",
         // "humans",
         callback
     )
 );
 
-gulp.task("dev", ["lint"], callback =>
+gulp.task("dev", ["test"], callback =>
     runSequence(
-        "clean",
-        ["html", "modernizr", "css", "js"],
+        "clean:dev",
+        ["html:dev", "modernizr:dev", "css:dev", "js:dev"],
         callback
     )
 );
-
-gulp.task("lint", ["html-lint", "js-lint"]);
 
 gulp.task("test", ["lint"], callback =>
     runSequence(
@@ -33,4 +31,6 @@ gulp.task("test", ["lint"], callback =>
     )
 );
 
-gulp.task("default", ["prod"]);
+gulp.task("lint", ["html:lint", "js:lint"]);
+
+gulp.task("default", ["dev"]);

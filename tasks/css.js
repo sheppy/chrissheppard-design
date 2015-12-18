@@ -71,28 +71,30 @@ var buildSass = function () {
 
 
 // Compile CSS
-gulp.task("css", () => {
+gulp.task("css:dev", () => {
     return buildSass()
-        .pipe(gulp.dest(path.join(config.dir.dist, config.dir.assets)))
+        .pipe(gulp.dest(path.join(config.dir.dev, config.dir.assets)))
         .pipe(browserSync.reload({ stream: true }));
 });
 
 
+// TODO: Uses nunjucks!
 // Minify css and update html references
-gulp.task("css-prod", () => {
+gulp.task("css:dist", () => {
     // Build CSS
     var manifest = buildSass()
         // Minify and save
         .pipe(plugins.plumber({ errorHandler }))
         .pipe(plugins.bytediff.start())
-        .pipe(plugins.uncss({
-            html: [
-                path.join(config.dir.dist, config.dir.html, config.glob.html),
-                "!" + path.join(config.dir.dist, config.dir.html, "styleguide", config.glob.html)
-            ],
-            ignoreSheets: [/fonts.googleapis/],
-            ignore: []
-        }))
+        // TODO: This has dependency on dev build?
+        //.pipe(plugins.uncss({
+        //    html: [
+        //        path.join(config.dir.dist, config.dir.html, config.glob.html),
+        //        "!" + path.join(config.dir.dist, config.dir.html, "styleguide", config.glob.html)
+        //    ],
+        //    ignoreSheets: [/fonts.googleapis/],
+        //    ignore: []
+        //}))
         .pipe(plugins.csso())
         .pipe(plugins.rev())
         .pipe(plugins.rename({ extname: ".min.css" }))
@@ -105,8 +107,8 @@ gulp.task("css-prod", () => {
 
     // Update HTML
     return gulp
-        .src(path.join(config.dir.dist, config.dir.html, config.glob.html))
+        .src(path.join(config.dir.dist, "view", config.glob.nunj))
         .pipe(plugins.plumber({ errorHandler }))
         .pipe(plugins.revReplace({ manifest: manifest }))
-        .pipe(gulp.dest(path.join(config.dir.dist, config.dir.html)));
+        .pipe(gulp.dest(path.join(config.dir.dist, "view")));
 });

@@ -11,7 +11,7 @@ gulp.task("server", ["dev"], () => {
         ui: false,
         open: false,
         server: {
-            baseDir: config.dir.dist
+            baseDir: config.dir.dev
         },
         notify: false
     });

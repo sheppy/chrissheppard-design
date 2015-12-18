@@ -11,7 +11,8 @@ export default {
     },
     dir: {
         src: "src",
-        dist: "public",
+        dev: "public",
+        dist: "dist",
         coverage: "coverage",
         pages: "pages",
         layouts: "layouts",

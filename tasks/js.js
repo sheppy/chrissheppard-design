@@ -56,15 +56,16 @@ var buildJs = function (isProd = false) {
 
 
 // Compile dev JS
-gulp.task("js", () => buildJs(false).pipe(gulp.dest(path.join(config.dir.dist, config.dir.assets))));
+gulp.task("js:dev", () => buildJs(false).pipe(gulp.dest(path.join(config.dir.dev, config.dir.assets))));
 
 
 // Compile modernizr JS
-gulp.task("modernizr", () => buildModernizr().pipe(gulp.dest(path.join(config.dir.dist, config.dir.assets))));
+gulp.task("modernizr:dev", () => buildModernizr().pipe(gulp.dest(path.join(config.dir.dev, config.dir.assets))));
 
 
+// TODO: CHange to nunjucks
 // Minify JS and update html references
-gulp.task("js-prod", () => {
+gulp.task("js:dist", () => {
     let manifest = streamQueue({ objectMode: true })
         // Build JS and Modernizr
         .queue(buildModernizr())
@@ -86,15 +87,15 @@ gulp.task("js-prod", () => {
 
     // Update HTML
     return gulp
-        .src(path.join(config.dir.dist, config.dir.html, config.glob.html))
+        .src(path.join(config.dir.dist, "view", config.glob.nunj))
         .pipe(plugins.plumber())
         .pipe(plugins.revReplace({ manifest: manifest }))
-        .pipe(gulp.dest(path.join(config.dir.dist, config.dir.html)));
+        .pipe(gulp.dest(path.join(config.dir.dist, "view")));
 });
 
 
 // Lint and code check
-gulp.task("js-lint", () => gulp
+gulp.task("js:lint", () => gulp
     .src([
         config.file.gulpfile,
         path.join(config.dir.src, config.glob.js),
@@ -124,7 +125,7 @@ gulp.task("js-lint", () => gulp
 
 
 // Tests and coverage
-gulp.task("js-test", (cb) => gulp
+gulp.task("js:test", (cb) => gulp
     .src(path.join(config.dir.src, config.glob.js))
     .pipe(plugins.plumber())
     .pipe(plugins.istanbul({
