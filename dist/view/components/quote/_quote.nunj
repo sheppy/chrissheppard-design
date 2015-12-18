@@ -1,0 +1,16 @@
+{% macro blockquote(quote, citeUrl="", citation="") %}
+    {% if citeUrl %}
+        <blockquote cite="{{ citeUrl }}">
+            {{ quote|safe }}
+            {% if citeAuthor %}
+                <p class="quote-cite">
+                    <a href="{{ citeUrl }}"><cite>citation</cite></a>
+                </p>
+            {% endif %}
+        </blockquote>
+    {% else %}
+        <blockquote>
+            {{ quote|safe }}
+        </blockquote>
+    {% endif %}
+{% endmacro %}
