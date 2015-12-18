@@ -26,7 +26,7 @@ gulp.task("dev", ["test"], callback =>
 gulp.task("test", ["lint"], callback =>
     runSequence(
         "clean:test",
-        ["js-test"],
+        ["js:test"],
         callback
     )
 );

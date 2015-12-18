@@ -1,3 +1,25 @@
 {
-  "pageTitle": "Home"
+  "pageTitle": "Home",
+  "page": {
+    "regions": [
+      {
+        "type": "region",
+        "name": "test-container",
+        "content": [
+          {
+            "type": "text",
+            "data": {
+              "text": "data dadsadasds"
+            }
+          },
+          {
+            "type": "text",
+            "data": {
+              "text": "data"
+            }
+          }
+        ]
+      }
+    ]
+  }
 }

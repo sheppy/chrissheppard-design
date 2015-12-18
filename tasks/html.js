@@ -6,6 +6,7 @@ import gulpLoadPlugins from "gulp-load-plugins";
 import fs from "fs";
 import _ from "lodash";
 import config from "./config";
+import CmsContent from "./helpers/CmsContent";
 
 const plugins = gulpLoadPlugins();
 
@@ -17,9 +18,14 @@ var errorHandler = function (err) {
 
 
 var compileHTML = function () {
-    plugins.nunjucksRender.nunjucks.configure([
+    var nunjucks = plugins.nunjucksRender.nunjucks.configure([
         config.dir.src
-    ], { watch: false });
+    ], { watch: false, noCache: true });
+
+    nunjucks.addExtension("CmsContent", new CmsContent());
+
+    // TODO: Somehow load in the cms-mixins
+    // Possible nunjucks.addGlobal(name, value)
 
     return gulp
         .src(path.join(config.dir.src, config.dir.pages, config.glob.nunj))
