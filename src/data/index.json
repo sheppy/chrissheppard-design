@@ -7,15 +7,9 @@
         "name": "main-content",
         "content": [
           {
-            "type": "text",
+            "type": "html",
             "data": {
-              "text": "data dadsadasds"
-            }
-          },
-          {
-            "type": "text",
-            "data": {
-              "text": "data"
+              "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid doloribus, esse id ipsam itaque quasi saepe tenetur voluptates? Alias debitis et eum ex inventore quibusdam quo totam ullam, veniam.</p>"
             }
           }
         ]

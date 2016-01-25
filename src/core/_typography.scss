@@ -23,13 +23,9 @@ l: 27px     - 28px
 
 body {
     font-smoothing: antialiased;
-    font-family: "Crimson Text", serif;
-
-    @include rwd-typographic-scale(1, false);
 }
 
 p, ul, ol, pre, table, blockquote {
-    @include rwd-typographic-margin(1);
 }
 
 ul ul, ol ol, ul ol, ol ul {
@@ -45,28 +41,23 @@ ul ul, ol ol, ul ol, ol ul {
 
 .pageTitle {
     text-rendering: optimizeLegibility;
-    @include rwd-typographic-scale(3);
 }
 
 .sectionHeader {
     text-rendering: optimizeLegibility;
-    @include rwd-typographic-scale(2);
 }
 
 .subHeader {
     text-rendering: optimizeLegibility;
-    @include rwd-typographic-scale(1);
 }
 
 .meta {
     text-rendering: optimizeLegibility;
-    @include rwd-typographic-scale(0);
     font-style: italic;
 }
 
 blockquote {
     text-rendering: optimizeLegibility;
-    @include rwd-typographic-scale(1);
     margin-left: 1.5em;
     padding-left: 1.5em;
     border-left: 5px solid $color-green;
@@ -76,6 +67,5 @@ blockquote {
     }
 
     .blockquote-cite {
-        @include rwd-typographic-scale(0);
     }
 }

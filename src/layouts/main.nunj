@@ -69,7 +69,7 @@
         <meta property="og:image" content="{{ meta.image }}">
     {% endif %}
 
-    <link href="//fonts.googleapis.com/css?family=Crimson+Text" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Lora|Crimson+Text:600" rel="stylesheet">
     <link rel="stylesheet" href="/assets/main.css">
 
     <script src="/assets/modernizr.js"></script>
