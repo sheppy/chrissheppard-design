@@ -1,4 +1,5 @@
-FROM alpine
+# Latest node v5.3.0
+FROM mhart/alpine-node
 MAINTAINER Chris Sheppard
 
 # Setup
@@ -7,9 +8,6 @@ EXPOSE 8080
 
 RUN apk update && \
     apk upgrade && \
-    apk add nodejs && \
-    apk add python && \
-    apk add build-base && \
     rm -rf /var/cache/apk/* && \
     mkdir -p /app
 

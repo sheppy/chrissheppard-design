@@ -1,7 +1,8 @@
 // Custom nunjucks tag to load content mixins
 // Usage in views: {% cmsContent contentObj %}
-const CmsContent = function () {
+const CmsContent = function (env) {
     this.tags = ["cmsContent"];
+    this.env = env;
 
     this.parse = function (parser, nodes) {
         let token = parser.nextToken();
@@ -18,7 +19,7 @@ const CmsContent = function () {
         let mixinName = "content" + theContent.type[0].toUpperCase() + theContent.type.slice(1);
         let mixinFile = `mixins/content/_${theContent.type}.nunj`;
 
-        context.env
+        env
             .getTemplate(mixinFile)
             .getExported(function (ctx, obj) {
                 callback(null, obj[mixinName](theContent));

@@ -22,10 +22,7 @@ var compileHTML = function () {
         config.dir.src
     ], { watch: false, noCache: true });
 
-    nunjucks.addExtension("CmsContent", new CmsContent());
-
-    // TODO: Somehow load in the cms-mixins
-    // Possible nunjucks.addGlobal(name, value)
+    nunjucks.addExtension("CmsContent", new CmsContent(nunjucks));
 
     return gulp
         .src(path.join(config.dir.src, config.dir.pages, config.glob.nunj))
@@ -42,9 +39,6 @@ var compileHTML = function () {
             } catch (e) {
                 plugins.util.log(plugins.util.colors.yellow(e.message));
             }
-
-            // global.components = fs.readdirSync(path.join(config.dir.src, "components"))
-            //    .filter(f => fs.statSync(path.join(config.dir.src, "components", f)).isDirectory());
 
             return _.extend({}, global, page);
         }))
@@ -66,7 +60,9 @@ gulp.task("html:dist", () =>
     gulp
         .src([
             path.join(config.dir.src, config.glob.nunj),
-            "!" + path.join(config.dir.src, "pages", "styleguide", config.glob.nunj)
+            "!" + path.join(config.dir.src, "pages", "styleguide", config.glob.nunj),
+            "!" + path.join(config.dir.src, "mixins", "_content-for-region-name.nunj"),
+            "!" + path.join(config.dir.src, "mixins", "content", config.glob.nunj)
         ])
         .pipe(plugins.plumber({ errorHandler }))
         .pipe(gulp.dest(path.join(config.dir.dist, "view")))

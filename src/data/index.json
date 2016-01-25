@@ -4,7 +4,7 @@
     "regions": [
       {
         "type": "region",
-        "name": "test-container",
+        "name": "main-content",
         "content": [
           {
             "type": "text",
