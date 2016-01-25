@@ -16,12 +16,12 @@ gulp.task("server", ["dev"], () => {
         notify: false
     });
 
-    gulp.watch(path.join(config.dir.src, config.glob.scss), ["css"]);
+    gulp.watch(path.join(config.dir.src, config.glob.scss), ["css:dev"]);
 
-    gulp.watch(path.join(config.dir.src, config.glob.js), ["js-lint", "js-test", "js"]);
+    gulp.watch(path.join(config.dir.src, config.glob.js), ["js:lint", "js:test", "js:dev"]);
 
     gulp.watch([
         path.join(config.dir.src, config.glob.nunj),
         path.join(config.dir.src, config.dir.data, config.glob.json)
-    ], ["html", browserSync.reload]);
+    ], ["html:dev", browserSync.reload]);
 });

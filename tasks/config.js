@@ -6,6 +6,7 @@ export default {
         nunj: "**/*.nunj",
         css: "**/*.css",
         scss: "**/*.scss",
+        scssPartial: "**/_*.scss",
         js: "**/*.js",
         json: "**/*.json"
     },

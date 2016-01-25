@@ -3,76 +3,60 @@
 import path from "path";
 import gulp from "gulp";
 import gulpLoadPlugins from "gulp-load-plugins";
-import streamQueue from "streamqueue";
 import browserSync from "browser-sync";
+import autoprefixer from "autoprefixer";
+import mqpacker from "css-mqpacker";
 import config from "./config";
 
 const plugins = gulpLoadPlugins();
-
+const postCss = gulpLoadPlugins({
+    pattern: ["postcss-*", "postcss.*"],
+    replaceString: /^postcss(-|\.)/
+});
 
 var errorHandler = function (err) {
     plugins.util.log(err);
     this.emit("end");
 };
 
-/*
-var buildCss = function () {
-    var autoprefixer = require("autoprefixer");
-    var mqpacker = require("css-mqpacker");
 
-    var processors = [
-        autoprefixer({
-            browsers: config.browsers,
-            cascade: false
+var buildCss = function () {
+    let cssProcessors = [
+        postCss.normalize(),
+        postCss.partialImport({
+            extension: "scss"
         }),
-        mqpacker
+        postCss.nested(),
+        postCss.discardComments(),
+        postCss.simpleVars(),
+        postCss.calc({ precision: 3 }),
+        autoprefixer({ browsers: config.browsers }),
+        mqpacker(),
+        postCss.reporter({
+            clearMessages: true
+        })
     ];
 
     return gulp.src([
-        config.file.normalize,
-        path.join(config.dir.src, config.glob.css)
+        path.join(config.dir.src, config.glob.scss),
+        "!" + config.glob.scssPartial
     ])
     .pipe(plugins.plumber({ errorHandler }))
-    .pipe(plugins.concat("main.css"))
-    .pipe(plugins.postcss(processors))
-        //.pipe(plugins.csscomb())
-        //.pipe(plugins.minifyCss({ keepSpecialComments: 0 }))
-        //.pipe(plugins.csso())
-        //.pipe(plugins.cssbeautify({ autosemicolon: true }))
+        .pipe(plugins.postcss(cssProcessors, { syntax: postCss.scss }))
+    .pipe(plugins.rename({
+        extname: ".css"
+    }))
+    .pipe(plugins.csscomb())
+    .pipe(plugins.minifyCss({ keepSpecialComments: 0 }))
+    .pipe(plugins.csso())
+    .pipe(plugins.cssbeautify({ autosemicolon: true }))
     .pipe(plugins.plumber.stop());
-};
-*/
-
-var buildSass = function () {
-    // Prepend normalize css
-    return streamQueue({ objectMode: true })
-        .queue(gulp.src(config.file.normalize))
-        .queue(
-            gulp
-                .src(path.join(config.dir.src, config.glob.scss))
-                .pipe(plugins.plumber({ errorHandler }))
-                .pipe(plugins.sass())
-                .pipe(plugins.plumber.stop())
-        )
-        .done()
-        .pipe(plugins.plumber({ errorHandler }))
-        .pipe(plugins.concat("main.css"))
-        .pipe(plugins.autoprefixer({
-            browsers: config.browsers,
-            cascade: false
-        }))
-        .pipe(plugins.csscomb())
-        .pipe(plugins.combineMq({ beautify: false }))
-        .pipe(plugins.minifyCss({ keepSpecialComments: 0 }))
-        .pipe(plugins.csso())
-        .pipe(plugins.cssbeautify({ autosemicolon: true }))
-        .pipe(plugins.plumber.stop());
 };
 
 
 // Compile CSS
 gulp.task("css:dev", () => {
-    return buildSass()
+    return buildCss()
         .pipe(gulp.dest(path.join(config.dir.dev, config.dir.assets)))
         .pipe(browserSync.reload({ stream: true }));
 });
@@ -82,7 +66,7 @@ gulp.task("css:dev", () => {
 // Minify css and update html references
 gulp.task("css:dist", () => {
     // Build CSS
-    var manifest = buildSass()
+    var manifest = buildCss()
         // Minify and save
         .pipe(plugins.plumber({ errorHandler }))
         .pipe(plugins.bytediff.start())
