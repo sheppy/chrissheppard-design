@@ -5,6 +5,5 @@ import del from "del";
 import config from "./config";
 
 
-gulp.task("clean:test", () => del(config.dir.coverage));
 gulp.task("clean:dev", () => del(config.dir.dev));
 gulp.task("clean:dist", () => del(config.dir.dist));

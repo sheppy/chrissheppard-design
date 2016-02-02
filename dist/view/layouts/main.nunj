@@ -19,60 +19,56 @@
 <html lang="en-GB" class="no-js">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
+    <meta http-equiv="cleartype" content="on">
 
-    <title>{{ pageTitle }}</title>
-
-    {% if meta.description %}
-        <link rel="description" href="{{ meta.description }}">
+    {% if page.title %}
+        <title>{{ page.title }} - Chris Sheppard</title>
+    {% else %}
+        <title>Chris Sheppard</title>
     {% endif %}
 
-    {% if meta.url %}
-        <link rel="author" href="{{ meta.url }}">
-    {% endif %}
+    {#<link rel="stylesheet" href="/favicon.ico">#}
+    {#<link rel="apple-touch-icon" href="/assets/ui/touch-icon/phone.png">#}
+    {#<link rel="apple-touch-icon" sizes="72x72" href="/assets/ui/touch-icon/tablet.png">#}
+    {#<link rel="apple-touch-icon" sizes="114x114" href="/assets/ui/touch-icon/phone-retina.png">#}
+    {#<link rel="apple-touch-icon" sizes="144x144" href="/assets/ui/touch-icon/tablet-retina.png">#}
+    {#<meta name="application-name" content="Chris Sheppard">#}
+    {#<meta name="msapplication-TileColor" content="#ffffff">#}
+    {#<meta name="msapplication-square70x70logo" content="/assets/ui/tile/tiny.png">#}
+    {#<meta name="msapplication-square150x150logo" content="/assets/ui/tile/square.png">#}
+    {#<meta name="msapplication-wide310x150logo" content="/assets/ui/tile/wide.png">#}
+    {#<meta name="msapplication-square310x310logo" content="/assets/ui/tile/large.png">#}
 
-    {% if social.googlePlus %}
-        <link rel="publisher" href="{{ social.googlePlus }}">
-    {% endif %}
+    <meta name="description" content="The personal website of Chris Sheppard, a web developer with over six years of professional experience in digital creative agencies">
+    <meta name="author" content="Chris Sheppard">
+    <link rel="publisher" href="https://plus.google.com/106252502049078840515">
+    <meta name="robots" content="index,follow">
+    <link type="text/plain" rel="author" href="https://www.chrissheppard.co.uk/humans.txt">
 
-    {% if meta.robots %}
-        <link rel="author" href="{{ meta.robots }}" type="text/plain">
-    {% endif %}
+    {# Twitter meta tags #}
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@ikiholygoat">
+    <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}Chris Sheppard{% endif %}">
+    <meta name="twitter:description" content="The personal website of Chris Sheppard, a web developer with over six years of professional experience in digital creative agencies">
 
-    {% if social.twitter %}
-        <meta name="twitter:card" content="summary">
-        <meta name="twitter:site" content="@{{ social.twitter }}">
-        <meta name="twitter:title" content="{{ pageTitle }}">
-        <meta name="twitter:description" content="{{ meta.description }}">
-    {% endif %}
+    {# Facebook meta tags #}
+    <meta name="og:type" content="website">
+    <meta name="og:locale" content="en_GB">
+    <meta name="og:title" content="{% if page.title %}{{ page.title }}{% else %}Chris Sheppard's Personal Website{% endif %}">
+    <meta name="og:description" content="The personal website of Chris Sheppard, a web developer with over six years of professional experience in digital creative agencies">
+    <meta name="og:url" content="http://www.chrissheppard.co.uk/">
+    <meta name="og:site_name" content="Chris Sheppard&#039;s Personal Website">
+    <meta name="og:image" content="http://www.chrissheppard.co.uk/assets/ui/chrissheppard-profile.jpg">
 
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="en_GB">
-    <meta property="og:title" content="{{ pageTitle }}">
+    {# Styles #}
+    <link href="//fonts.googleapis.com/css?family=Lora|Crimson+Text:600" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/main-a9fdfdcbda.min.css">
 
-    {% if meta.name %}
-        <meta property="og:site_name" content="{{ meta.name }}">
-    {% endif %}
-
-    {% if meta.description %}
-        <meta property="og:description" content="{{ meta.description }}">
-    {% endif %}
-
-    {% if meta.url %}
-        <meta property="og:url" content="{{ meta.url }}">
-    {% endif %}
-
-    {% if meta.image %}
-        <meta property="og:image" content="{{ meta.image }}">
-    {% endif %}
-
-    <link href="//fonts.googleapis.com/css?family=Crimson+Text" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/main.css">
-
-    <script src="/assets/modernizr.js"></script>
+    {#<script src="/assets/modernizr-a7845b6804.min.js"></script>#}
 </head>
 <body>
     {{ siteHeader("Site", navigation(navItems)) }}
@@ -84,5 +80,14 @@
     {{ siteFooter() }}
 
     <script src="/assets/index.js" async></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,"script","//www.google-analytics.com/analytics.js","ga");
+
+        ga("create", "UA-488510-1", "auto", { "sampleRate": 80 });
+        ga("send", "pageview");
+    </script>
 </body>
 </html>

@@ -93,6 +93,6 @@ gulp.task("css:dist", () => {
     return gulp
         .src(path.join(config.dir.dist, "view", config.glob.nunj))
         .pipe(plugins.plumber({ errorHandler }))
-        .pipe(plugins.revReplace({ manifest: manifest }))
+        .pipe(plugins.revReplace({ manifest: manifest, replaceInExtensions: [".nunj"] }))
         .pipe(gulp.dest(path.join(config.dir.dist, "view")));
 });

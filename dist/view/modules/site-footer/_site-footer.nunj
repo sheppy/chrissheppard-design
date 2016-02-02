@@ -1,3 +1,5 @@
 {% macro siteFooter() %}
-    <footer class="siteFooter"></footer>
+    <footer class="siteFooter">
+        Copyright © 2016 • Christopher Sheppard
+    </footer>
 {% endmacro %}

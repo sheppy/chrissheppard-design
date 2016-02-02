@@ -4,7 +4,6 @@ import path from "path";
 import gulp from "gulp";
 import gulpLoadPlugins from "gulp-load-plugins";
 import fs from "fs";
-import _ from "lodash";
 import config from "./config";
 import CmsContent from "./helpers/CmsContent";
 
@@ -40,15 +39,11 @@ var compileHTML = function () {
                 plugins.util.log(plugins.util.colors.yellow(e.message));
             }
 
-            return _.extend({}, global, page);
+            return Object.assign({}, global, page);
         }))
         .pipe(plugins.nunjucksRender())
         .pipe(plugins.plumber.stop());
 };
-
-
-// Validate HTML
-gulp.task("html:lint", () => compileHTML().pipe(plugins.plumber({ errorHandler })).pipe(plugins.html5Lint()));
 
 
 // Save HTML

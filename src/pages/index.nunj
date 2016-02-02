@@ -7,7 +7,6 @@
 
         <div>
             {{ contentForRegionName("main-content", page) }}
-            {#{% cmsContent content %}#}
         </div>
     </div>
 {% endblock %}
