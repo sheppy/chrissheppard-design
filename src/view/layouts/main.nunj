@@ -54,9 +54,9 @@
 
     {# Styles #}
     <link href="//fonts.googleapis.com/css?family=Lora|Crimson+Text:600" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/main-a9fdfdcbda.min.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
 
-    {#<script src="/assets/js/modernizr-a7845b6804.min.js"></script>#}
+    {#<script src="/assets/js/modernizr.js"></script>#}
 <body>
     <div id="header" role="banner">
         <div class="container">

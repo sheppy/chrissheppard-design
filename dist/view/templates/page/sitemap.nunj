@@ -1,0 +1,29 @@
+{% extends "layouts/main.nunj" %}
+
+
+{% block content %}
+
+    <div class="container">
+        <h1>Sitemap</h1>
+
+        <ul class="pages">
+            {% for page in pages %}
+                <li>
+                    <a href="{{ page.url }}">{{ page.title }}</a>
+                    {% if page.url == "/blog" %}
+                        <ul class="pages">
+                            {% for post in posts %}
+                                <li>
+                                    <a href="{{ post.url }}">{{ post.title }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </li>
+            {% else %}
+                <li>Sorry, no pages!</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+<html>
+<head>
+    <title>Website Contact: www.chrissheppard.co.uk</title>
+</head>
+<body>
+    <h1>Chris Sheppard</h1>
+
+    <p>Someone has successfully completed the contact form on the website www.chrissheppard.co.uk.</p>
+    <p>Details are below:</p>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <td mc:edit="name">*|NAME|*</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td mc:edit="email">*|EMAIL|*</td>
+        </tr>
+        <tr>
+            <th>Time</th>
+            <td mc:edit="time">*|TIME|*</td>
+        </tr>
+        <tr>
+            <th>Referrer</th>
+            <td mc:edit="referrer">*|REFERRER|*</td>
+        </tr>
+        <tr>
+            <th>Browser</th>
+            <td mc:edit="browser">*|BROWSER|*</td>
+        </tr>
+        <tr>
+            <th>IP Address</th>
+            <td mc:edit="ip">*|IP|*</td>
+        </tr>
+        <tr>
+            <td colspan="2">Message</td>
+        </tr>
+        <tr>
+            <td colspan="2" mc:edit="message">*|MESSAGE|*</td>
+        </tr>
+    </table>
+</body>
+</html>

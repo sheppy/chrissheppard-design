@@ -83,7 +83,7 @@ gulp.task("css:dist", () => {
         .pipe(plugins.rev())
         .pipe(plugins.rename({ extname: ".min.css" }))
         .pipe(plugins.bytediff.stop())
-        .pipe(gulp.dest(path.join(config.dir.dist, config.dir.assets)))
+        .pipe(gulp.dest(path.join(config.dir.dist, "public", config.dir.assets, "css")))
 
         // Generate manifest
         .pipe(plugins.rev.manifest())

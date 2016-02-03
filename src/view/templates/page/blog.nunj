@@ -1,0 +1,41 @@
+{% extends "layouts/main.nunj" %}
+
+
+{% block content %}
+
+    <div class="container">
+        <h1>{{ page.title }}</h1>
+        {{ contentForRegionName("body", page) }}
+
+        <ul class="posts">
+            {% for post in posts %}
+                <li>
+                    <div>
+                        <a href="{{ post.url }}" class="headline">{{ post.title }}</a>
+                        <p class="secondary">{{ post.created }}</p>
+                        <div>{{ contentForRegionName("body", post) }}</div>
+                    </div>
+                </li>
+            {% else %}
+                <li>Sorry, no posts!</li>
+            {% endfor %}
+        </ul>
+
+        {% if pagination.page >= 1 and pagination.page <= pagination.pages %}
+            <div class="pagination box box-border">
+                {% if pagination.page > 1 %}
+                    <a href="/blog/{{ pagination.page - 1 }}" class="prev">Previous</a>
+                {% endif %}
+
+                Page {{ pagination.page }} of {{ pagination.pages }}
+
+                <div class="pagination box box-border">
+                    {% if  pagination.page < pagination.pages %}
+                        <a href="/blog/{{ pagination.page + 1 }}" class="next">Next</a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

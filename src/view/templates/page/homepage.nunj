@@ -1,0 +1,33 @@
+{% extends "layouts/main.nunj" %}
+
+
+{% block content %}
+
+    <div class="container" role="main">
+        <div class="box box-border box-container">
+            <div class="grid-row">
+                <div class="box grid-1" data-region="profile" data-grid-480="2">
+                    {{ contentForRegionName("profile", page) }}
+                </div>
+                <div class="box grid-3" data-region="intro" data-grid-720="2">
+                    {{ contentForRegionName("intro", page) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-row">
+            <div class="box box-border box-center grid-1" data-region="skills" data-grid-480="2">
+                {{ contentForRegionName("skills", page) }}
+            </div>
+
+            <div class="box box-container grid-2" data-region="work">
+                {{ contentForRegionName("work", page) }}
+            </div>
+
+            <div class="box box-border box-center grid-1" data-region="network" data-grid-480="2" data-grid-720="3">
+                {{ contentForRegionName("network", page) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -34,7 +34,7 @@ gulp.task("modernizr:dist", () => {
         .pipe(plugins.rev())
         .pipe(plugins.rename({ extname: ".min.js" }))
         .pipe(plugins.bytediff.stop())
-        .pipe(gulp.dest(path.join(config.dir.dist, config.dir.assets)))
+        .pipe(gulp.dest(path.join(config.dir.dist, "public", config.dir.assets, "js")))
 
         // Generate manifest
         .pipe(plugins.rev.manifest())

@@ -1,0 +1,54 @@
+{% extends "layouts/main.nunj" %}
+
+
+{% block content %}
+
+    <div class="container">
+        <div data-region="body">
+            {{ contentForRegionName("body", page) }}
+        </div>
+
+        <form action="" method="post" class="box box-border box-container">
+            <div class="grid-row">
+                <div class="box grid-2">
+                    <div class="form-row">
+                        <label for="name">Name</label>
+                        <input id="name" name="name" placeholder="First and last name" value="{{ params.name }}" autocomplete="off">
+                        {% if errors.name %}
+                            <p class="form-error">{{ errors.name.msg }}</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-row">
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="email" placeholder="example@domain.com" value="{{ params.email }}" autocomplete="off" autocorrect="off" autocapitalize="off">
+                        {% if errors.email %}
+                            <p class="form-error">{{ errors.email.msg }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-row">
+                <div class="box grid-2" data-grid-720="3">
+                    <div class="form-row">
+                        <label for="message">Message</label>
+                        <textarea name="message" id="message" rows="3" placeholder="Your message must be greater than 20 characters">{{ params.message }}</textarea>
+                        {% if errors.message %}
+                            <p class="form-error">{{ errors.message.msg }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-row">
+                <div class="box box-center">
+                    <div class="form-row">
+                        <button class="btn" type="submit">Send</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

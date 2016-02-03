@@ -18,13 +18,13 @@ var errorHandler = function (err) {
 
 var compileHTML = function () {
     var nunjucks = plugins.nunjucksRender.nunjucks.configure([
-        config.dir.src
+        path.join(config.dir.src, "view")
     ], { watch: false, noCache: true });
 
     nunjucks.addExtension("CmsContent", new CmsContent(nunjucks));
 
     return gulp
-        .src(path.join(config.dir.src, config.dir.pages, config.glob.nunj))
+        .src(path.join(config.dir.src, "view", "templates", "page", config.glob.nunj))
         .pipe(plugins.plumber({ errorHandler }))
         .pipe(plugins.data(file => {
             // Extend with global data
@@ -54,10 +54,10 @@ gulp.task("html:dev", () => compileHTML().pipe(gulp.dest(config.dir.dev, config.
 gulp.task("html:dist", () =>
     gulp
         .src([
-            path.join(config.dir.src, config.glob.nunj),
-            "!" + path.join(config.dir.src, "pages", "styleguide", config.glob.nunj),
-            "!" + path.join(config.dir.src, "mixins", "_content-for-region-name.nunj"),
-            "!" + path.join(config.dir.src, "mixins", "content", config.glob.nunj)
+            path.join(config.dir.src, "view", config.glob.nunj),
+            "!" + path.join(config.dir.src, "view", "templates", "page", "styleguide", config.glob.nunj),
+            "!" + path.join(config.dir.src, "view", "mixins", "_content-for-region-name.nunj"),
+            "!" + path.join(config.dir.src, "view", "mixins", "content", config.glob.nunj)
         ])
         .pipe(plugins.plumber({ errorHandler }))
         .pipe(gulp.dest(path.join(config.dir.dist, "view")))

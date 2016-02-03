@@ -1,10 +1,10 @@
 {
-  "pageTitle": "Home",
+  "pageTitle": "Default CMS Page",
   "page": {
     "regions": [
       {
         "type": "region",
-        "name": "main-content",
+        "name": "body",
         "content": [
           {
             "type": "html",
