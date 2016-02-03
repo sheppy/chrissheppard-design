@@ -3,6 +3,7 @@
 bower_components/
 public/
 src/
+!src/index.js
 tasks/
 test/
 .babelrc
