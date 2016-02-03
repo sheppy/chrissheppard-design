@@ -1,0 +1,12 @@
+/* TEAM */
+Web Developer: Chris Sheppard
+Site: http://www.chrissheppard.co.uk
+Twitter: @ikiholygoat
+From: London, United Kingdom
+
+
+/* SITE */
+Site name: Chris Sheppard
+Site URL: http://www.chrissheppard.co.uk/
+Built With: HTML, CSS, JavaScript, node, mongodb
+Software: PhpStorm, Photoshop
