@@ -52,11 +52,13 @@
     <meta name="og:site_name" content="Chris Sheppard&#039;s Personal Website">
     <meta name="og:image" content="http://www.chrissheppard.co.uk/assets/ui/chrissheppard-profile.jpg">
 
+    {% block head %}
     {# Styles #}
     <link href="//fonts.googleapis.com/css?family=Lora|Crimson+Text:600" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/main.css">
 
     {#<script src="/assets/js/modernizr.js"></script>#}
+    {% endblock %}
 <body>
     <div id="header" role="banner">
         <div class="container">
@@ -78,7 +80,7 @@
         {% endblock %}
     </div>
 
-    {% block scripts %}{% endblock %}
+    {% block scripts %}
     <script>
         (function () {
             if (!window.addEventListener) {
@@ -111,5 +113,6 @@
         ga("create", "UA-488510-1", "auto", { "sampleRate": 80 });
         ga("send", "pageview");
     </script>
+    {% endblock %}
 </body>
 </html>
