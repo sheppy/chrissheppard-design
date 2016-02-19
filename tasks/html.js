@@ -55,7 +55,6 @@ gulp.task("html:dist", () =>
     gulp
         .src([
             path.join(config.dir.src, "view", config.glob.nunj),
-            "!" + path.join(config.dir.src, "view", "templates", "page", "styleguide", config.glob.nunj),
             "!" + path.join(config.dir.src, "view", "mixins", "_content-for-region-name.nunj"),
             "!" + path.join(config.dir.src, "view", "mixins", "content", config.glob.nunj)
         ])
