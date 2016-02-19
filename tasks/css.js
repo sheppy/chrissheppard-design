@@ -4,8 +4,9 @@ import path from "path";
 import gulp from "gulp";
 import gulpLoadPlugins from "gulp-load-plugins";
 import browserSync from "browser-sync";
-import autoprefixer from "autoprefixer";
 import mqpacker from "css-mqpacker";
+import cssNano from "cssnano";
+import mdCss from "mdcss";
 import config from "./config";
 
 const plugins = gulpLoadPlugins();
@@ -22,16 +23,29 @@ var errorHandler = function (err) {
 
 var buildCss = function () {
     let cssProcessors = [
-        postCss.normalize(),
         postCss.partialImport({
             extension: "scss"
         }),
         postCss.nested(),
-        postCss.discardComments(),
         postCss.simpleVars(),
-        postCss.calc({ precision: 3 }),
-        autoprefixer({ browsers: config.browsers }),
+        postCss.colorFunction(),
+        postCss.propertyLookup(),
         mqpacker(),
+        // TODO: Only do this sometimes?
+        mdCss({
+            destination: path.join(config.dir.dev, "styleguide"),
+            examples: {
+                css: [
+                    "../assets/css/main.css",
+                    "https://fonts.googleapis.com/css?family=Lora|Crimson+Text:600"
+                ]
+            }
+        }),
+        cssNano({
+            minifyFontValues: { removeQuotes: false },
+            autoprefixer: { browsers: config.browsers },
+            calc: { precision: 3 }
+        }),
         postCss.reporter({
             clearMessages: true
         })
