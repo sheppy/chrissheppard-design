@@ -1,0 +1,65 @@
+/*
+    Custom Reset based on:
+     - https://github.com/necolas/normalize.css/blob/master/normalize.css
+     - https://github.com/corysimmons/reeeset/blob/master/src/reeeset.css
+*/
+
+// http://www.paulirish.com/2012/box-sizing-border-box-ftw
+html {
+    box-sizing: border-box;
+}
+
+// https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
+*,
+:after,
+:before {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+// Prevent iOS and IE text size adjust after device orientation change, without disabling user zoom.
+html {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+// Remove default margin.
+body {
+    margin: 0;
+}
+
+// https://css-tricks.com/eliminate-jumps-in-horizontal-centering-by-forcing-a-scroll-bar
+body {
+    overflow-y: scroll;
+}
+
+// Clearfix body
+body:after {
+    display: table;
+    clear: both;
+    content: "";
+}
+
+// HTML5 display definitions
+article, aside, details, figcaption, figure, footer, header, main, menu, nav, section, summary {
+    display: block;
+}
+
+// http://unstoppablerobotninja.com/entry/fluid-images
+audio, embed, iframe, img, input, object, video, table {
+    max-width: 100%;
+}
+
+p:last-of-type {
+    margin-bottom: 0;
+}
+
+table {
+    width: 100%;
+}
+
+// Remove default vertical scrollbar in IE 8/9/10/11.
+textarea {
+    overflow: auto;
+}

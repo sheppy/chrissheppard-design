@@ -1,0 +1,28 @@
+// Variables
+$viewport-desktop:  800px;
+$viewport-tablet:   720px;
+$viewport-phone:    480px;
+
+// Fonts
+$font-body:     Arial, sans-serif;
+$font-heading:  "Crimson Text", Georgia, serif;
+
+// Colour
+$color-white:           #FFFFFF;
+$color-midnight-grey:   #444444;
+$color-azure-blue:      #257AD6;
+$color-forest-green:    #1F882C;
+
+// Theme
+/*---
+title: Theme
+---
+```example:color
+@color: #444444 @name: Text
+@color: #1F882C @name: Primary
+@color: #FFFFFF @name: Primary Inverse
+```
+*/
+$theme-text:            $color-midnight-grey;
+$theme-primary:         $color-forest-green;
+$theme-primary-inverse: $color-white;

@@ -1,0 +1,21 @@
+/*---
+title: Container
+section: Objects
+---
+```example:html,width:320px
+<div class="o-container" style="background:#eee">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad, aperiam autem consequatur
+    dignissimos, dolore illum labore libero maiores minima molestias natus nihil quas quia quo reiciendis
+    repellat saepe sapiente?
+</div>
+```
+*/
+.o-container {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 16px;
+
+    @media (min-width: $viewport-tablet) {
+        padding: 24px;
+    }
+}

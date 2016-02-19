@@ -1,0 +1,26 @@
+/*---
+title: Tags
+section: Components
+---
+```example:html
+<ul class="o-list-inline c-tags">
+    <li><a href="#">Tag 1</a></li>
+    <li><a href="#">Tag 2</a></li>
+    <li><a href="#">Tag 3</a></li>
+</ul>
+```
+*/
+.c-tags {
+    li {}
+    a {
+        background: $theme-primary;
+        color: $theme-primary-inverse;
+        padding: 2px;
+        text-decoration: none;
+        transition: background-color 0.2s;
+
+        &:hover {
+            background: color($theme-primary shade(20%))
+        }
+    }
+}

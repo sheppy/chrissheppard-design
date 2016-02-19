@@ -1,0 +1,25 @@
+/*---
+title: Quote
+section: Components
+---
+```example:html
+<blockquote class="c-quote">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad, aperiam autem consequatur
+    dignissimos, dolore illum labore libero maiores minima molestias natus nihil quas quia quo reiciendis
+    repellat saepe sapiente?
+</blockquote>
+```
+*/
+.c-quote {
+    text-rendering: optimizeLegibility;
+    margin-left: 1.5em;
+    padding-left: @margin-left;
+    border-left: 5px solid $theme-primary;
+
+    //p {
+    //    margin-bottom: 0.25em;
+    //}
+
+    .c-quote__cite {
+    }
+}

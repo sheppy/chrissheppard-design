@@ -1,0 +1,30 @@
+/*---
+title: Pagination
+section: Components
+---
+```example:html
+<ul class="o-list-inline c-pagination">
+    <li class="is-disabled"><span>«</span></li>
+    <li class="is-active"><span>1</span></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">»</a></li>
+</ul>
+```
+*/
+.c-pagination {
+    li {}
+
+    a, span {
+        padding: 2px;
+    }
+
+    .is-active {
+        background: $theme-primary;
+        color: $theme-primary-inverse;
+    }
+
+    .is-disabled {
+        cursor: default;
+    }
+}
