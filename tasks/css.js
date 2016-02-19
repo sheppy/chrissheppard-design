@@ -21,35 +21,38 @@ var errorHandler = function (err) {
 };
 
 
-var buildCss = function () {
-    let cssProcessors = [
-        postCss.partialImport({
-            extension: "scss"
-        }),
-        postCss.nested(),
-        postCss.simpleVars(),
-        postCss.colorFunction(),
-        postCss.propertyLookup(),
-        mqpacker(),
-        // TODO: Only do this sometimes?
-        mdCss({
-            destination: path.join(config.dir.dev, "styleguide"),
-            examples: {
-                css: [
-                    "../assets/css/main.css",
-                    "https://fonts.googleapis.com/css?family=Lora|Crimson+Text:600"
-                ]
-            }
-        }),
+var buildCss = function (styleGuidePath) {
+    let cssProcessors = [];
+
+    cssProcessors.push(postCss.partialImport({ extension: "scss" }));
+    cssProcessors.push(postCss.nested());
+    cssProcessors.push(postCss.simpleVars());
+    cssProcessors.push(postCss.colorFunction());
+    cssProcessors.push(postCss.propertyLookup());
+    cssProcessors.push(mqpacker());
+
+    if (styleGuidePath) {
+        cssProcessors.push(
+            mdCss({
+                destination: styleGuidePath,
+                examples: {
+                    css: [
+                        "../assets/css/main.css",
+                        "https://fonts.googleapis.com/css?family=Lora|Crimson+Text:600"
+                    ]
+                }
+            })
+        );
+    }
+
+    cssProcessors.push(
         cssNano({
             minifyFontValues: { removeQuotes: false },
             autoprefixer: { browsers: config.browsers },
             calc: { precision: 3 }
-        }),
-        postCss.reporter({
-            clearMessages: true
         })
-    ];
+    );
+    cssProcessors.push(postCss.reporter({ clearMessages: true }));
 
     return gulp.src([
         path.join(config.dir.src, config.glob.scss),
@@ -71,6 +74,12 @@ var buildCss = function () {
 // Compile CSS
 gulp.task("css:dev", () => {
     return buildCss()
+        .pipe(gulp.dest(path.join(config.dir.dev, config.dir.assets)))
+        .pipe(browserSync.reload({ stream: true }));
+});
+
+gulp.task("css:dev+styleguide", () => {
+    return buildCss(path.join(config.dir.dev, "styleguide"))
         .pipe(gulp.dest(path.join(config.dir.dev, config.dir.assets)))
         .pipe(browserSync.reload({ stream: true }));
 });
