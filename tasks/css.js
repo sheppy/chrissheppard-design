@@ -6,6 +6,7 @@ import gulpLoadPlugins from "gulp-load-plugins";
 import browserSync from "browser-sync";
 import mqpacker from "css-mqpacker";
 import cssNano from "cssnano";
+import cssLost from "lost";
 import mdCss from "mdcss";
 import config from "./config";
 
@@ -29,7 +30,11 @@ var buildCss = function (styleGuidePath) {
     cssProcessors.push(postCss.simpleVars());
     cssProcessors.push(postCss.colorFunction());
     cssProcessors.push(postCss.propertyLookup());
-    cssProcessors.push(mqpacker());
+    cssProcessors.push(postCss.responsiveType());
+    cssProcessors.push(postCss.verticalRhythm());
+    cssProcessors.push(cssLost());
+    cssProcessors.push(postCss.mqOptimize());
+    cssProcessors.push(mqpacker({ sort: true }));
 
     if (styleGuidePath) {
         cssProcessors.push(
@@ -59,7 +64,7 @@ var buildCss = function (styleGuidePath) {
         "!" + config.glob.scssPartial
     ])
     .pipe(plugins.plumber({ errorHandler }))
-        .pipe(plugins.postcss(cssProcessors, { syntax: postCss.scss }))
+    .pipe(plugins.postcss(cssProcessors, { syntax: postCss.scss }))
     .pipe(plugins.rename({
         extname: ".css"
     }))
